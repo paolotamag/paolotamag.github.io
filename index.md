@@ -11,7 +11,7 @@ On February 2017 I published a paper about my project, which has been selected f
 My plans are to come back after my graduation in New York City to start my data scientist career.
 
 ## Publications
-[_**Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations**_](https://static1.squarespace.com/static/5502f56fe4b0aa4bfbdae0a8/t/58f3a5f16b8f5bdee61806ea/1492362746108/rivelo-hilda17.pdf)<br>
+[_Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations_](Rivelo-Tamagnini-paper.pdf)<br>
 Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini<br>
 In Workshop on _Human-In-the-Loop Data Analytics (HILDA), 2017_<br>
 
