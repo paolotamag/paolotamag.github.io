@@ -1,4 +1,4 @@
 # Paolo Tamagnini
 ## Master student - Data Science - Sapienza University of Rome
 ### paolotamag [at] gmail [dot] com
-![Image](me.png)
+![Image](me.jpg)
