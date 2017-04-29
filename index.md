@@ -11,6 +11,6 @@ On February 2017 I published a short paper about my project, which has been sele
 My plans are to come back after my graduation in New York City to further study this field.
 
 ## Publications
-_**Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations**_
-Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini
-In Workshop on _Human-In-the-Loop Data Analytics (HILDA), 2017_
+_**Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations**_<br>
+Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini<br>
+In Workshop on _Human-In-the-Loop Data Analytics (HILDA), 2017_<br>
