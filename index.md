@@ -7,7 +7,7 @@ I am currently in the second year of my [master in Data Science](http://datascie
 Last August 2016 I started a 3-months internship with [Enrico Bertini](http://enrico.bertini.io/), assistant professor at New York University, [Tandon School of Engineering](http://engineering.nyu.edu/). 
 My project was involving the development of a visual analytics tool able to display interactively machine
 learning explanations. 
-On February 2017 I published a paper about my project, which has been selected for the workshop [HILDA 2017](http://hilda.io/2017/).
+On February 2017 I published a paper about my [project](http://nyuvis-web.poly.edu/projects/rivelo/), which has been selected for the workshop [HILDA 2017](http://hilda.io/2017/).
 My plans are to come back after my graduation in New York City to start my data scientist career.
 
 ## Publications
