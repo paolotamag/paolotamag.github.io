@@ -3,10 +3,9 @@
 ### paolotamag [at] gmail [dot] com
 ![Image](me_small.jpg)
 ### Download [CV](paolotamag_cv.pdf)
-I am currently in the second year of my [master in Data Science](http://datascience.i3s.uniroma1.it/it) in Rome at Sapienza University and I will graduate in Fall 2017.
+I recently graduated in my [master in Data Science](http://datascience.i3s.uniroma1.it/it) in Rome at Sapienza University and my thesis is available [here](1536242_tamagnini_master_thesis.pdf). I was part of the first graduation in Italy for a Data Science degree. The ceremony had many important guests from company like Google, Banca d'Italia, IBM, Microsoft, Unicredit, SAS and Eurostat (more info [here](http://datascience.i3s.uniroma1.it/it/node/5759)). To celebrate this day I wrote with the other graduating students a [journal](journal.pdf) with articles talking about our experiences in the last two years and about the development of our theses.
 Last August 2016 I started a 3-months internship with [Enrico Bertini](http://enrico.bertini.io/), assistant professor at New York University, [Tandon School of Engineering](http://engineering.nyu.edu/). 
-My project was involving the development of a visual analytics tool able to display interactively machine
-learning explanations. 
+My project was involving the development of a visual analytics tool able to display interactively machine learning explanations. 
 On February 2017 I published a paper about my [project](http://nyuvis-web.poly.edu/projects/rivelo/), which has been selected for the workshop [HILDA 2017](http://hilda.io/2017/).
 My plans are to come back after my graduation in New York City to start my data scientist career.
 
