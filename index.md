@@ -9,7 +9,8 @@ I recently graduated in my [master in Data Science](http://datascience.i3s.uniro
 In August 2016 I started a 3-months internship with [Enrico Bertini](http://enrico.bertini.io/), assistant professor at New York University, [Tandon School of Engineering](http://engineering.nyu.edu/). 
 My project was involving the development of a visual analytics tool able to display interactively machine learning explanations. 
 On February 2017 I published a paper about my [project](http://nyuvis-web.poly.edu/projects/rivelo/), which has been selected for the workshop [HILDA 2017](http://hilda.io/2017/), which took place in Chicago at SIGMOD 2017 last May.
-Now I am back in NY to further develop my research and seize new opportunities.
+After graudation I went back to NY to present my thesis at Google (more info [here](https://sites.google.com/site/nycresearchseminar/)). 
+I am looking foward to what might come next, open to any exciting oppurtunities.
 ## Publications
 [_Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations_](Rivelo-Tamagnini-paper.pdf)<br>
 Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini<br>
