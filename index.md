@@ -4,7 +4,6 @@
 ![Image](me_small.jpg)
 ## [Download C.V.](paolotamag_cv.pdf) 
 ### (last updated on January 2, 2018)
-<br>
 <p>
 Data scientist designing tools where the alternation of automated data analysis and interactive on-demand visualization help the user in solving complex problems and detecting hidden patterns/anomalies in the data.
 </p>
