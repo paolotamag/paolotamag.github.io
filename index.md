@@ -7,8 +7,9 @@
 <br>
 <p>
 Data scientist designing tools where the alternation of automated data analysis and interactive on-demand visualization help the user in solving complex problems and detecting hidden patterns/anomalies in the data.
-<br>
-Keywords: visual analytics; machine learning; data science; big data; Python; JavaScript; d3.js; ...
+</p>
+<p>
+<b>Keywords</b>: <i>visual analytics</i>; <i>machine learning</i>; <i>data science</i>; <i>big data</i>; <i>Python</i>; <i>JavaScript</i>; <i>d3.js</i>; ...
 </p>
 <hr>
 <p>In October 2017 I graduated in my <a href="http://datascience.i3s.uniroma1.it/it">master in Data Science</a> in Rome at Sapienza University and my thesis is available <a href="1536242_tamagnini_master_thesis.pdf">here</a>. I was part of the first graduation in Italy for a Data Science degree. The ceremony had many guests from companies like Google, Banca d'Italia, IBM, Microsoft, Unicredit, SAS and Eurostat (more info <a href="http://datascience.i3s.uniroma1.it/it/archivionotizie/data-science-first-graduation">here</a>). To celebrate this day I wrote with the other graduating students a <a href="journal.pdf">journal</a> with articles talking about our experiences in the last two years and about the development of our theses.</p>
