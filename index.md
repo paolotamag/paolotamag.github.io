@@ -2,7 +2,8 @@
 ### Master student - Data Science - Sapienza University of Rome
 ### paolotamag [at] gmail [dot] com
 ![Image](me_small.jpg)
-<h2><a href = "paolotamag_cv.pdf">Download C.V.</a>|<a href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/"><img src="linkedin_logo.png"> </a></h2>
+<h2><a href = "paolotamag_cv.pdf">Download C.V.</a>|<a href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/">
+														<img src="linkedin_logo.png" style="position: relative; top: 3px;"></a></h2>
 ### (last updated on January 6, 2018)
 <p>
 Data scientist with research experience, fond of data visualization, ready to tackle real world problems.
