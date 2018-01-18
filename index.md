@@ -26,4 +26,9 @@ I am looking forward to what might come next, open to any exciting opportunities
 [_Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations_](Rivelo-Tamagnini-paper.pdf)<br>
 Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini<br>
 In Workshop on _Human-In-the-Loop Data Analytics (HILDA), 2017_<br>
-
+## Media
+<ul>
+<li><a href="https://youtu.be/RfusqHxTplU">italian tv</a></li>
+<li><a href="http://www.corriere.it/scuola/universita/cards/i-primi-4-laureati-big-data-italia-cosi-numeri-diventano-storie/corso-sapienza_principale.shtml">italian newspaper</a></li>
+<li><a href="https://youtu.be/l-H-h0tXvoI">italian regional tv</a></li>
+</ul>
