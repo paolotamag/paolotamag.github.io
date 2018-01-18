@@ -4,7 +4,7 @@
 ![Image](me_small.jpg)
 <h2><a href = "paolotamag_cv.pdf">Download C.V.</a>|<a href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/">
 														<img src="linkedin_logo.png" style="position: relative; top: 10px;"></a></h2>
-### (last updated on January 6, 2018)
+### (last updated on January 18, 2018)
 <p>
 Data scientist with research experience, fond of data visualization, ready to tackle real world problems.
 </p>
