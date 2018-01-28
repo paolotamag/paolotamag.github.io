@@ -1,0 +1,79 @@
+#slider{
+    opacity:1;
+    transition: opacity 4s;}
+
+
+#slider.fadeOut {
+    opacity:0;
+}
+
+div.body_text {
+	height: 100%;
+	left: 40%;
+	width:35%;
+	top: 1%;
+	position:absolute; 
+	z-index:10;
+    background-color: rgba(255,255,255,0.25);
+    padding-right : 2.5%;
+    padding-left: 2.5%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;    
+}
+
+div.body_text_2 {
+	height: 100%;
+	left: 5%;
+	width:25%;
+	top: 1%;
+	position:absolute; 
+	z-index:10;
+    background-color: rgba(255,255,255,0.25);
+    padding-right : 2.5%;
+    padding-left: 2.5%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+
+
+}
+
+div.background_div {
+	position:absolute; 
+	z-index:0;
+	zoom: 125%;
+	top: -15%;
+	left: -10%;
+	width: 100%;
+	height: 100%;
+
+}
+
+body {
+	font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 100%;
+}
+
+.container {
+	width: 90%;
+	height: 1000px;
+	position: absolute;
+	z-index:10;
+}
+
+a {
+	color: #267CB9;
+	text-decoration: none;
+}
+
+a:hover {
+	font-weight: bold;
+	transition: text-decoration 500ms;
+}
+
+hr {
+	color = black;
+}
+
+.mephoto {
+	width: 75%;
+}
