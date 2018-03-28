@@ -7,8 +7,8 @@
     opacity:0;
 }
 
-div.hiders {
-	border-style: hidden;
+fieldset {
+   border:0 none;
 }
 
 div.body_text {
