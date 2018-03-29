@@ -11,6 +11,16 @@ fieldset {
    border:0 none;
 }
 
+legend {
+	color: #267CB9;
+	text-decoration: none;
+}
+
+legend:hover {
+	color: blue;
+	transition: text-decoration 500ms;
+}
+
 div.body_text {
 	height: 100%;
 	left: 40%;
