@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
 
-$('.majorpoints').click(function(){
-    $(this).next().toggle();
-});
+	$('.majorpointslegend').click(function(){
+	    $(this).next().toggle();
+	});
 
 });
