@@ -73,7 +73,7 @@ body {
 
 .container {
 	width: 90%;
-	height: 2000px;
+	height: 1500px;
 	position: absolute;
 	z-index:10;
 }
