@@ -73,7 +73,7 @@ body {
 
 .container {
 	width: 90%;
-	height: 1500px;
+	height: 1250px;
 	position: absolute;
 	z-index:10;
 }
@@ -92,7 +92,7 @@ hr {
     display: block;
     height: 2px;
     border: 0;
-    border-top: 2px solid #E0E0E0;
+    border-top: 2px solid #8e8e8e;
     margin: 1em 0;
     padding: 0; 
 }
