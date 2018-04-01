@@ -1,91 +1,10 @@
 
 <html>
+
 <head>
-<title>paolotamag</title>
-<script type="text/javascript" language="JavaScript">
-
-
-var set_imgDuration = 3000*4
-var imgArray = [
-'slides/random_26.png',
-'slides/random_27.png',
-'slides/random_28.png',
-'slides/random_29.png',
-'slides/random_30.png',
-'slides/random_31.png',
-'slides/random_32.png',
-'slides/random_33.png',
-'slides/random_34.png',
-'slides/random_35.png',
-'slides/random_36.png',
-'slides/random_37.png',
-'slides/random_38.png',
-'slides/random_39.png',
-'slides/random_40.png',
-'slides/random_41.png',
-'slides/random_42.png',
-'slides/random_43.png',
-'slides/random_44.png',
-'slides/random_45.png'],
-    curIndex = 0;
-    imgDuration = set_imgDuration;
-
-
-var imgArray2 = [
-'slides/random_26.png',
-'slides/random_27.png',
-'slides/random_28.png',
-'slides/random_29.png',
-'slides/random_30.png',
-'slides/random_31.png',
-'slides/random_32.png',
-'slides/random_33.png',
-'slides/random_34.png',
-'slides/random_35.png',
-'slides/random_36.png',
-'slides/random_37.png',
-'slides/random_38.png',
-'slides/random_39.png',
-'slides/random_40.png',
-'slides/random_41.png',
-'slides/random_42.png',
-'slides/random_43.png',
-'slides/random_44.png',
-'slides/random_45.png'],
-    curIndex2 = 1;
-    imgDuration2 = set_imgDuration;
-function start(){ 
-  slideShow();
-  slideShow_two();}
-
-  function slideShow() {
-      document.getElementById('slider').className += "fadeOut";
-
-      setTimeout(function() {
-          document.getElementById('slider').src = imgArray[curIndex];
-          document.getElementById('slider').className = "";
-      },1000*4);
-      curIndex++;
-      if (curIndex == imgArray.length) { curIndex = 0; }
-      setTimeout(slideShow, imgDuration);
-  }
-
-  function slideShow_two() {
-
-      setTimeout(function() {
-          document.getElementById('slider_two').src = imgArray2[curIndex2];
-      },2000*4);
-      curIndex2++;
-      if (curIndex2 == imgArray2.length) { curIndex2 = 0; }
-      setTimeout(slideShow_two, imgDuration2);
-  }
-</script>
-
-
-
+  <title>paolotamag</title>
+  <script src="/js/animated_bckgrnd.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
-
-
 </head>
 
 <body onload="start()">
@@ -101,7 +20,7 @@ function start(){
     <h2><a href = "paolotamag_cv.pdf">Download C.V.</a> |<a href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/">
                                 <img src="linkedin_logo_new.png" style="position: relative; top: 10px;"></a> |<a href="https://github.com/paolotamag">
                                 <img src="github.png" style="position: relative; top: 10px;"></a></h2>
-    <h3> (last updated on January 28, 2018)</h3>
+    <h3> (last updated on April 1, 2018)</h3>
     <hr>
     <h2>Publications</h2>
     <a href="Rivelo-Tamagnini-paper.pdf"><i>Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations</i></a><br>
@@ -125,6 +44,25 @@ function start(){
             <b>topics</b>: <i>logistic regr., deep and shallow NNs, back propagation, .. </i> 
               <hr>
             <b>tools</b>: <i>python, numpy</i>
+          </div>
+        </div>
+
+      </li>
+
+      <br> 
+
+      <li>
+        <i>Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</i> <a href="https://www.coursera.org/learn/deep-neural-network/">online course</a> by deeplearning.ai on Coursera. 
+          <br>
+        <a href="https://www.coursera.org/account/accomplishments/certificate/K4HE9XJUU7NS">Certificate</a> earned in April 2018.
+          <br>
+        <div>
+          <fieldset class="majorpoints">
+          <legend class="majorpointslegend"> > ... </legend>
+          <div class="hiders" style="display:none"> 
+            <b>topics</b>: <i>L2 and Dropout Regularization, mini-batch gradient descent, Adam optimization algorithm, Batch Norm, .. </i> 
+              <hr>
+            <b>tools</b>: <i>python, numpy, TensorFlow</i>
           </div>
         </div>
 
