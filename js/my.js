@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-$('.majorpoints').click(function(){
+$('.majorpointslegend').click(function(){
     $(this).find('.hiders').toggle();
 });
 
