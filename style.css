@@ -92,7 +92,7 @@ hr {
     display: block;
     height: 2px;
     border: 0;
-    border-top: 2px solid #8e8e8e;
+    border-top: 2px solid black;
     margin: 1em 0;
     padding: 0; 
 }
