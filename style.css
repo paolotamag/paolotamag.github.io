@@ -100,3 +100,7 @@ hr {
 .mephoto {
 	width: 75%;
 }
+
+
+label:hover {
+	cursor: pointer; }
