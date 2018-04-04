@@ -23,7 +23,10 @@ legend {
 legend:hover {
 	color: blue;
 	transition: text-decoration 500ms;
+	cursor: pointer;
 }
+
+
 
 div.body_text {
 	height: 100%;
@@ -102,5 +105,3 @@ hr {
 }
 
 
-label:hover {
-	cursor: pointer; }
