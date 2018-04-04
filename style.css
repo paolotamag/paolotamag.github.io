@@ -21,7 +21,7 @@ legend {
 }
 
 legend:hover {
-	color: blue;
+	color: black;
 	transition: text-decoration 500ms;
 	cursor: pointer;
 }
