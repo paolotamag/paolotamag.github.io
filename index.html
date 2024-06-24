@@ -168,7 +168,7 @@
           <div class="review-author">
               <img src="/api/placeholder/50/50" alt="Author" onerror="this.src='giphy.gif';">
               <div class="review-author-info">
-                  <span class="review-author-name"></span>
+                <a href="" class="review-author-link"><span class="review-author-name"></span></a>
                   <span class="review-author-role"></span>
               </div>
           </div>
@@ -730,6 +730,8 @@
     const authorName = reviewContent.querySelector('.review-author-name');
     const authorRole = reviewContent.querySelector('.review-author-role');
     const reviewText = reviewContent.querySelector('.review-text');
+    const authorLink = reviewContent.querySelector('.review-author-link');
+
 
     function updateReview() {
     if (!reviews || reviews.length === 0) return; // Guard clause if reviews is empty or not loaded
@@ -739,6 +741,7 @@
     setTimeout(() => {
         authorImg.src = review.profile_image_link;
         authorImg.alt = `${review.author}'s profile picture`;
+        authorLink.href = review.author_link;
         authorName.textContent = review.author;
         authorRole.textContent = review.role;
         reviewText.textContent = review.content;
