@@ -73,8 +73,6 @@ body {
 	font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 100%;
 	margin: 0;
-	overflow: hidden;
-	background-color: transparent;
 }
 
 canvas {
