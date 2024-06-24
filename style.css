@@ -72,6 +72,17 @@ div.background_div {
 body {
 	font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 100%;
+	margin: 0;
+	overflow: hidden;
+	background-color: transparent;
+}
+
+canvas {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
 }
 
 .container {
