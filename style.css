@@ -137,3 +137,38 @@ hr {
 }
 
 
+.review-slideshow {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f0f0f0;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.review-content {
+	transition: opacity 0.5s ease-in-out;
+}
+.review-author {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.review-author img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.review-author-info {
+	display: flex;
+	flex-direction: column;
+}
+.review-author-name {
+	font-weight: bold;
+}
+.review-author-role {
+	font-size: 0.9em;
+	color: #666;
+}
+.review-text {
+	font-style: italic; }
