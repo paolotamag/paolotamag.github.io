@@ -162,7 +162,7 @@
     </h2>
     <h3>last update: June 24, 2024</h3>
     <hr>
-
+    <p>Read more on my <a target="_blank" href="https://www.linkedin.com/in/paolo-tamagnini/details/recommendations">LinkedIn profile</a>.</p>
     <div id="reviewSlideshow" class="review-slideshow">
       <div class="review-content">
           <div class="review-author">
@@ -708,27 +708,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="js\my.js"></script>
   <script>
-    const reviews_old = [
-        {
-            author: "John Doe",
-            role: "Software Engineer",
-            profile_image_link: "/api/placeholder/50/50",
-            content: "This product has significantly improved our team's productivity!"
-        },
-        {
-            author: "Jane Smith",
-            role: "Product Manager",
-            profile_image_link: "/api/placeholder/50/50",
-            content: "Excellent features and user-friendly interface. Highly recommended!"
-        },
-        {
-            author: "Alex Johnson",
-            role: "UX Designer",
-            profile_image_link: "/api/placeholder/50/50",
-            content: "The intuitive design makes it a joy to use every day. Great job!"
-        }
-    ];
-    
+   
     // Assuming the JSON file is located at 'path/to/your/data.json'
     const jsonFilePath = 'collected_data.json';
 
@@ -769,7 +749,7 @@
 }
 
     updateReview(); // Initial update
-    setInterval(updateReview, 5000); // Update every 5 seconds
+    setInterval(updateReview, 10000); // Update every 5 seconds
 </script>
 </body>
 </html>
