@@ -2,13 +2,14 @@ $(document).ready(function(){
 
 
 	$('.majorpointslegend').click(function(){
-	    $(this).next().toggle();
-		// Check if the text is '>' and change it to '*'
-		if ($(this).text() === ' &#9658; ... ') {
-			$(this).text(' &#9660; ');
-		} else if ($(this).text() === ' &#9660;' ) { // Optional: Change it back to '>' if you click again
-			$(this).text(' &#9658; ... ');
-		}
+		$(this).next().toggle();
+			// Check if the element's HTML includes the specific string and change it
+			if ($(this).text() === " ► ... " ) {
+				console.log($(this).text());
+				$(this).text(' ▼ ');
+			} else if ($(this).text() === " ▼ " ) { // Optional: Change it back if you click again
+			  $(this).text(' ► ... ');
+			}
 	});
-
-});
+	
+	});
