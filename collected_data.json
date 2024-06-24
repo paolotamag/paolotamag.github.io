@@ -1,6 +1,69 @@
 {
     "review": [
         {
+            "content": "I worked with Paolo at KNIME for almost 6 years, and you could not ask for a more passionate and knowledgeable teammate and advisor. Beyond that, he was meticulously organized about the many projects he was responsible for, and had a knack for clearly communicating advanced data science concepts to a wide variety of audiences. From a technical perspective he was always on point. I can recommend him without hesitation.",
+            "author": "Scott Fincher",
+            "author_link": "https://www.linkedin.com/in/scottfincher",
+            "role": "Data Science Community Manager at KNIME",
+            "profile_image_link": "https://media.licdn.com/dms/image/D5603AQFGLMCyeSgo4w/profile-displayphoto-shrink_100_100/0/1700444650829?e=1724889600&v=beta&t=TtAcXlYpueuYErAaLFMth9LR-EtmfsFsNuBtFTHRG_A"
+        },
+        {
+            "content": "I had the pleasure of working closely with Paolo for the better part of a year in KNIME's Educators Alliance team. Paolo is an exceptional data scientist with a passion for problem-solving and a drive to explore uncharted territory. His unique blend of technical expertise and creativity sets him apart and has helped him succeed in multiple projects with researchers and educators. He approaches projects with enthusiasm and dedication, always striving to deliver results of the highest quality. But what truly distinguishes Paolo is his ability to effectively communicate his findings to both technical and non-technical folks in writing and presenting. In summary, I wholeheartedly recommend Paolo for data science roles at the cutting edge, in which technical expertise and analytical prowess are required.",
+            "author": "Stefan Helfrich",
+            "author_link": "https://www.linkedin.com/in/stefanhelfrich",
+            "role": "Academic Alliance Manager at KNIME",
+            "profile_image_link": "https://media.licdn.com/dms/image/C5603AQHQdfajjGABcg/profile-displayphoto-shrink_100_100/0/1517286449740?e=1724889600&v=beta&t=_9yc_ESOdGfdugZpWyNdPQiaiDg3J3seKzL1eF1zdyI"
+        },
+        {
+            "content": "I worked with Paolo for 6 years as part of the same team, if you're looking for a driven data expert who is always ahead of the curve, look no further!",
+            "author": "Casiana R\u00eembu",
+            "author_link": "https://www.linkedin.com/in/casiana-r%C3%AEmbu-7450b7153",
+            "role": "--",
+            "profile_image_link": "https://media.licdn.com/dms/image/C5603AQEqQm7Y4qK7qg/profile-displayphoto-shrink_100_100/0/1517019548162?e=1724889600&v=beta&t=QbdF29dBL9rMhp3tcHXR-hsk_uW_a5VcvpPI7RphOLc"
+        },
+        {
+            "content": "Paolo worked as a senior data scientist for the data science evangelism group at KNIME. He worked as the main workflow and component builder on key advanced topics, such as autoML, XAI, Python integration, and GenAI. Paolo is meticulous in his work,very motivated in implementing new ideas, organized, competent, and always curious in the most advanced data science techniques. He has also acted as a great mentor for all our new hires.",
+            "author": "Rosaria Silipo",
+            "author_link": "https://www.linkedin.com/in/rosaria",
+            "role": "Head of Data Science Evangelism at KNIME",
+            "profile_image_link": "https://media.licdn.com/dms/image/C4D03AQFU2aruX_X5aw/profile-displayphoto-shrink_100_100/0/1549211827567?e=1724889600&v=beta&t=mebm3V-sfZwyk0LAUKcqt3Ta8-7_biGXzPexa1jMpyk"
+        },
+        {
+            "content": "During Paolo Tamagnini\u2019s research internship at NYU, he reported to me on two key projects: \u2018Rivelo,\u2019 a tool for visualizing counterfactual explanations, and a Python package for visualizing partial dependence plots. His innovative approach and commitment significantly advanced our research. Paolo\u2019s ability to grasp complex concepts and bring fresh ideas was invaluable. I strongly recommend him as he would be an asset to any team or project.",
+            "author": "Josua Krause, Ph.D.",
+            "author_link": "https://www.linkedin.com/in/josuakrause",
+            "role": "Large Language Models, Transformers, NLP",
+            "profile_image_link": "https://media.licdn.com/dms/image/C4D03AQH36R6XWXRtvg/profile-displayphoto-shrink_100_100/0/1529332164858?e=1724889600&v=beta&t=tlqniy13bBPOL_rtGUtixrl2htav6MqgnPbMEo6ImlU"
+        },
+        {
+            "content": "Since my first days at KNIME, Paolo has always been a steady presence. Not only as an advocate and representative of the company, but also always very involved in understanding the product development and with an eye to client feedback. He always brought positive energy and made sure to efficiently communicate with me and others any issues, client feedback and more, always in a direct, precise and helpful way. Not to mention, he always had a moment, during public events or in our daily work life, to listen to feedback, questions, and report issues and positive experiences. Also, his ability to successfully lead many KNIME events is obvious when seeing the positive impact of those events and how much of a trusted figure Paolo is. I really believe that Paolo is a dedicated and strong team player, an efficient communicator and great at public relations. I will sincerely miss working with him!",
+            "author": "Luisa Barbero",
+            "author_link": "https://www.linkedin.com/in/luisabarbero",
+            "role": "UX Designer @KNIME",
+            "profile_image_link": "https://media.licdn.com/dms/image/C4D03AQEV6Qxsd8S-Sg/profile-displayphoto-shrink_100_100/0/1595259340195?e=1724889600&v=beta&t=1L_fLniXz8-RfltLfaKA2r0MFPE9n2IObrjdrpaYMqk"
+        },
+        {
+            "content": "Paolo has been an absolute pleasure to work with. One of the most striking aspects of his professional skill set is his deep understanding of how companies can harness the power of data for strategic advantage. In addition, his knowledge of how to harness the power of low-code tools (especially KNIME) is second to none. But he is not afraid to combine this with his knowledge of pure Python when needed. His exceptional ability to demystify complex data science processes is what really sets Paolo apart. He has a unique talent for making these processes easily understandable to a broader audience, which is invaluable in collaborative and cross-functional environments. I sincerely look forward to the opportunity to work with Paolo again in the near future. He would be an asset to any team or project focused on data science and analytics with his blend of expertise, innovation, and communication skills. For any organization looking to leverage data science for business growth and efficiency, I highly recommend him.",
+            "author": "Pablo Osinaga",
+            "author_link": "https://www.linkedin.com/in/pablo-osinaga",
+            "role": "Infrastructure Engineer at DeepL",
+            "profile_image_link": "https://media.licdn.com/dms/image/D4E03AQHhA1NMl9r1_A/profile-displayphoto-shrink_100_100/0/1698670021775?e=1724889600&v=beta&t=BAv2CaXBY48dnEzaarST4LQdIby4OAv2WMeyHWtB8hs"
+        },
+        {
+            "content": "Paolo is an excellent coworker, always attentive and with ideas or suggestions to add. At KNIME, he wore many different hats (workflow developer, course creator, webinar presenter and host, teacher, among others) and always executed his tasks with excellence. I'm sure that whatever he ends up doing next will be done with his usual attention to detail and care!",
+            "author": "Aline Bessa",
+            "author_link": "https://www.linkedin.com/in/alinebessa",
+            "role": "Data Scientist at KNIME",
+            "profile_image_link": "https://media.licdn.com/dms/image/D4E03AQFsk7LRSVlihA/profile-displayphoto-shrink_100_100/0/1711055218935?e=1724889600&v=beta&t=46DjSqWMC8H9ISaFtAUhsZ6S6cuqTliDuVjq2NgCeuk"
+        },
+        {
+            "content": "When I had the pleasure of working with Paolo where he showed me how to create a KNIME verified component, he really impressed me with his attention to detail, strong technical expertise and his ability to \"make noise\" and advertise his projects adequately to the intended audience. If you want to learn something, I can highly recommend taking on a project together with Paolo!",
+            "author": "Lukas Siedentop",
+            "author_link": "https://www.linkedin.com/in/lukas-siedentop",
+            "role": "Solution Engineer bei KNIME",
+            "profile_image_link": "https://media.licdn.com/dms/image/C4D03AQGQcRXeH-7yZw/profile-displayphoto-shrink_100_100/0/1623764166025?e=1724889600&v=beta&t=ha3n9ToQO7gAGt69aKYTS5locusIH-vCjD5tkvNh-_Q"
+        },
+        {
             "content": "I had the pleasure of working with Paolo for almost six years at KNIME. We run several events together, teaching advanced analytics concepts to the open source community. He impressed me over and over again, not only with his vast knowledge on all things machine learning, but also with his ability to explain complex topics in a simple manner. Whenever new trends in the field of AI came up, Paolo was a trusted advisor to teams across the entire organization and the open source community. I would recommend Paolo to anyone looking for a seasoned data scientist.",
             "author": "Marten Kose",
             "author_link": "https://www.linkedin.com/in/marten-kose-89b399157",
