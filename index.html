@@ -302,7 +302,7 @@
     fetch(jsonFilePath)
       .then(response => response.json()) // Parse the response as JSON
       .then(data => {
-        reviews = data; // Assign the JSON data to the variable
+        reviews = data.review; // Assign the JSON data to the variable
         console.log(reviews); // Optional: log the data to verify
       })
       .catch(error => {
