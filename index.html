@@ -735,7 +735,7 @@
       .then(response => response.json()) // Parse the response as JSON
       .then(data => {
         reviews = data.review;
-        reviews = shuffleArray(reviews); // Assign the JSON data to the variable
+        shuffleArray(reviews); // Assign the JSON data to the variable
         console.log(reviews); // Optional: log the data to verify
       })
       .catch(error => {
