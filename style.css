@@ -47,8 +47,6 @@ div.body_text {
     padding-left: 2.5%;
     padding-top: 1.5%;
     padding-bottom: 1.5%;
-	max-height: 100%; /* Adjust based on your layout */
-	overflow-y: auto; /* Enable vertical scrolling */
 }
 
 div.body_text_2 {
@@ -63,8 +61,6 @@ div.body_text_2 {
     padding-left: 2.5%;
     padding-top: 1.5%;
     padding-bottom: 1.5%;
-	max-height: 100%; /* Adjust based on your layout */
-	overflow-y: auto; /* Enable vertical scrolling */
 
 
 }
@@ -81,8 +77,6 @@ div.body_text_3 {
     padding-left: 2.5%;
     padding-top: 1.5%;
     padding-bottom: 1.5%;
-	max-height: 100%; /* Adjust based on your layout */
-	overflow-y: auto; /* Enable vertical scrolling */
 
 
 }
@@ -102,7 +96,6 @@ body {
 	font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 100%;
 	margin: 0;
-	overflow: hidden;
 }
 
 canvas {
@@ -111,7 +104,6 @@ canvas {
 	top: 0;
 	left: 0;
 	z-index: 1;
-	overflow: hidden;
 }
 
 .container {
@@ -119,14 +111,12 @@ canvas {
 	height: 1250px;
 	position: absolute;
 	z-index:10;
-	overflow: hidden;
 }
 
 a {
 	color: #267CB9;
 	text-decoration: none;
 }
-
 
 
 a:hover {
