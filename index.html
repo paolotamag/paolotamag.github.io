@@ -709,9 +709,23 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script src="js\my.js"></script>
+
   <script>
-   
+    
+    // Function to shuffle an array using the Fisher-Yates shuffle algorithm
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        // Generate a random index from 0 to i
+        const j = Math.floor(Math.random() * (i + 1));
+        // Swap elements at indices i and j
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }    
+
+    // Now 'reviews' is shuffled and you can proceed with displaying them as before
+
     // Assuming the JSON file is located at 'path/to/your/data.json'
     const jsonFilePath = 'collected_data.json';
 
@@ -720,7 +734,8 @@
     fetch(jsonFilePath)
       .then(response => response.json()) // Parse the response as JSON
       .then(data => {
-        reviews = data.review; // Assign the JSON data to the variable
+        reviews = data.review;
+        reviews = shuffleArray(reviews); // Assign the JSON data to the variable
         console.log(reviews); // Optional: log the data to verify
       })
       .catch(error => {
@@ -756,6 +771,7 @@
 
     updateReview(); // Initial update
     setInterval(updateReview, 10000); // Update every 5 seconds
+
 </script>
 </body>
 </html>
