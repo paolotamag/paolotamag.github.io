@@ -770,6 +770,22 @@
     updateReview(); // Initial update
     setInterval(updateReview, 10000); // Update every 5 seconds
 
+    function enforceDesktopViewport() {
+    const viewport = document.querySelector("meta[name=viewport]");
+    if (viewport) {
+      // Set the viewport width to 1024px for desktop display
+      viewport.setAttribute("content", "width=1024");
+    } else {
+      // If the viewport meta tag does not exist, create one and append it to <head>
+      const newViewport = document.createElement("meta");
+      newViewport.setAttribute("name", "viewport");
+      newViewport.setAttribute("content", "width=1920");
+      document.head.appendChild(newViewport);
+    }
+  }
+
+  // Call the function to enforce desktop viewport
+  enforceDesktopViewport();
 </script>
 </body>
 </html>
