@@ -74,6 +74,10 @@ div.body_text_3 {
         margin-top: 20px; /* Add some space between the divs */
 		height: auto; /* Allow the divs to grow in height */
     }
+
+	#reviewSlideshow {
+		height: 300px;
+	}
 }
 
 div.background_div {
@@ -170,6 +174,3 @@ hr {
 	font-style: italic; 
 }
 
-#reviewSlideshow {
-	height: 400px;
-}
