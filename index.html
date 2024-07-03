@@ -20,6 +20,7 @@
     </div>
 
     <canvas id="canvas"></canvas>
+    
     <script>
         
       const canvas = document.getElementById('canvas');
@@ -148,6 +149,7 @@
       animate();
 
     </script>
+
     <div class="body_text_2">
       <img class="mephoto" id="imageCycle" src="me/0.jpg"  ondragstart="return false;" ondrop="return false;"/>
       <h2>
@@ -267,7 +269,6 @@
           </fieldset>
 
       </div>
-
 
     <div class="body_text_3">
       
@@ -707,86 +708,86 @@
     </div>
   </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <script src="js\my.js"></script>
+  <script src="js\my.js"></script>
 
-    <script>
-      
-      // Function to shuffle an array using the Fisher-Yates shuffle algorithm
-      function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          // Generate a random index from 0 to i
-          const j = Math.floor(Math.random() * (i + 1));
-          // Swap elements at indices i and j
-          [array[i], array[j]] = [array[j], array[i]];
-        }
-      }    
+  <script>
 
-      // Now 'reviews' is shuffled and you can proceed with displaying them as before
+  // Function to shuffle an array using the Fisher-Yates shuffle algorithm
+  function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Generate a random index from 0 to i
+    const j = Math.floor(Math.random() * (i + 1));
+    // Swap elements at indices i and j
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  }    
 
-      // Assuming the JSON file is located at 'path/to/your/data.json'
-      const jsonFilePath = 'collected_data.json';
+  // Now 'reviews' is shuffled and you can proceed with displaying them as before
 
-      let reviews = null; // Initialize a variable to hold the JSON data
+  // Assuming the JSON file is located at 'path/to/your/data.json'
+  const jsonFilePath = 'collected_data.json';
 
-      fetch(jsonFilePath)
-        .then(response => response.json()) // Parse the response as JSON
-        .then(data => {
-          reviews = data.review;
-          shuffleArray(reviews); // Assign the JSON data to the variable
-          console.log(reviews); // Optional: log the data to verify
-        })
-        .catch(error => {
-          console.error('Error fetching the JSON file:', error);
-        });
+  let reviews = null; // Initialize a variable to hold the JSON data
 
-      let currentReviewIndex = 0;
-      const reviewContent = document.querySelector('.review-content');
-      const authorImg = reviewContent.querySelector('img');
-      const authorName = reviewContent.querySelector('.review-author-name');
-      const authorRole = reviewContent.querySelector('.review-author-role');
-      const reviewText = reviewContent.querySelector('.review-text');
-      const authorLink = reviewContent.querySelector('.review-author-link');
+  fetch(jsonFilePath)
+  .then(response => response.json()) // Parse the response as JSON
+  .then(data => {
+    reviews = data.review;
+    shuffleArray(reviews); // Assign the JSON data to the variable
+    console.log(reviews); // Optional: log the data to verify
+  })
+  .catch(error => {
+    console.error('Error fetching the JSON file:', error);
+  });
+
+  let currentReviewIndex = 0;
+  const reviewContent = document.querySelector('.review-content');
+  const authorImg = reviewContent.querySelector('img');
+  const authorName = reviewContent.querySelector('.review-author-name');
+  const authorRole = reviewContent.querySelector('.review-author-role');
+  const reviewText = reviewContent.querySelector('.review-text');
+  const authorLink = reviewContent.querySelector('.review-author-link');
 
 
-      function updateReview() {
-      if (!reviews || reviews.length === 0) return; // Guard clause if reviews is empty or not loaded
-      const review = reviews[currentReviewIndex];
-      reviewContent.style.opacity = 0;
-      
-      setTimeout(() => {
-          authorImg.src = review.profile_image_link;
-          authorImg.alt = `${review.author}'s profile picture`;
-          authorLink.href = review.author_link;
-          authorName.textContent = review.author;
-          authorRole.textContent = review.role;
-          reviewText.textContent = review.content;
-          reviewContent.style.opacity = 1;
-      }, 500);
+  function updateReview() {
+  if (!reviews || reviews.length === 0) return; // Guard clause if reviews is empty or not loaded
+  const review = reviews[currentReviewIndex];
+  reviewContent.style.opacity = 0;
 
-      currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+  setTimeout(() => {
+    authorImg.src = review.profile_image_link;
+    authorImg.alt = `${review.author}'s profile picture`;
+    authorLink.href = review.author_link;
+    authorName.textContent = review.author;
+    authorRole.textContent = review.role;
+    reviewText.textContent = review.content;
+    reviewContent.style.opacity = 1;
+  }, 500);
+
+  currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
   }
 
-      updateReview(); // Initial update
-      setInterval(updateReview, 10000); // Update every 5 seconds
+  updateReview(); // Initial update
+  setInterval(updateReview, 10000); // Update every 5 seconds
 
-      function enforceDesktopViewport() {
-      const viewport = document.querySelector("meta[name=viewport]");
-      if (viewport) {
-        // Set the viewport width to 1024px for desktop display
-        viewport.setAttribute("content", "width=1920");
-      } else {
-        // If the viewport meta tag does not exist, create one and append it to <head>
-        const newViewport = document.createElement("meta");
-        newViewport.setAttribute("name", "viewport");
-        newViewport.setAttribute("content", "width=1920");
-        document.head.appendChild(newViewport);
-      }
-    }
+  function enforceDesktopViewport() {
+  const viewport = document.querySelector("meta[name=viewport]");
+  if (viewport) {
+  // Set the viewport width to 1024px for desktop display
+  viewport.setAttribute("content", "width=1920");
+  } else {
+  // If the viewport meta tag does not exist, create one and append it to <head>
+  const newViewport = document.createElement("meta");
+  newViewport.setAttribute("name", "viewport");
+  newViewport.setAttribute("content", "width=1920");
+  document.head.appendChild(newViewport);
+  }
+  }
 
-    // Call the function to enforce desktop viewport
-    enforceDesktopViewport();
+  // Call the function to enforce desktop viewport
+  enforceDesktopViewport();
   </script>
 </body>
 </html>
