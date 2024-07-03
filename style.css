@@ -169,3 +169,7 @@ hr {
 .review-text {
 	font-style: italic; 
 }
+
+#reviewSlideshow {
+	height: auto;
+}
