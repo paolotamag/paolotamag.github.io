@@ -35,50 +35,45 @@ legend:hover {
 
 
 
-div.body_text {
-	height: 100%;
-	left: 40%;
-	width:25%;
-	top: 1%;
-	position:absolute; 
-	z-index:10;
+div.body_text, div.body_text_2, div.body_text_3 {
+    height: 100%;
+    position: absolute;
+    z-index: 10;
     background-color: rgba(255,255,255,0.4);
-    padding-right : 2.5%;
+    padding-right: 2.5%;
     padding-left: 2.5%;
     padding-top: 1.5%;
     padding-bottom: 1.5%;
+}
+
+div.body_text {
+    left: 40%;
+    width: 25%;
+    top: 1%;
 }
 
 div.body_text_2 {
-	height: 100%;
-	left: 5%;
-	width:25%;
-	top: 1%;
-	position:absolute; 
-	z-index:10;
-    background-color: rgba(255,255,255,0.4);
-    padding-right : 2.5%;
-    padding-left: 2.5%;
-    padding-top: 1.5%;
-    padding-bottom: 1.5%;
-
-
+    left: 5%;
+    width: 25%;
+    top: 1%;
 }
 
 div.body_text_3 {
-	height: 100%;
-	left: 75%;
-	width:25%;
-	top: 1%;
-	position:absolute; 
-	z-index:10;
-    background-color: rgba(255,255,255,0.4);
-    padding-right : 2.5%;
-    padding-left: 2.5%;
-    padding-top: 1.5%;
-    padding-bottom: 1.5%;
+    left: 75%;
+    width: 25%;
+    top: 1%;
+}
 
-
+/* Responsive design for tablets and mobile devices */
+@media (max-width: 768px) {
+    div.body_text, div.body_text_2, div.body_text_3 {
+        position: relative; /* Change position to relative for stacking */
+        width: 90%; /* Adjust width to fit mobile screens */
+        left: 5%; /* Center the divs */
+        top: auto; /* Reset top positioning */
+        margin-top: 20px; /* Add some space between the divs */
+		height: auto; /* Allow the divs to grow in height */
+    }
 }
 
 div.background_div {
