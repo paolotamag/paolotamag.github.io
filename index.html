@@ -29,7 +29,7 @@
       let width, height;
       let mouseX = 0, mouseY = 0;
       const circles = [];
-      const circleRadius = 1; // Halved the radius from 5 to 2.5
+      const circleRadius = 2; // Halved the radius from 5 to 2.5
       const circleCount = 1000; // Number of circles
 
       const colorSequence = [
@@ -74,53 +74,67 @@
           return `rgba(${interpolated[0]}, ${interpolated[1]}, ${interpolated[2]}, 0.7)`;
       }
 
-      class Circle {
-          constructor(x, y) {
-              this.x = x;
-              this.y = y;
-              this.velocity = {
-                  x: (Math.random() - 0.5) * 1, // Halved the speed
-                  y: (Math.random() - 0.5) * 1  // Halved the speed
-              };
-          }
+      class Triangle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.velocity = {
+            x: (Math.random() - 0.5) * 1, // Halved the speed
+            y: (Math.random() - 0.5) * 1  // Halved the speed
+        };
+        this.rotation = 0; // Initial rotation
+    }
 
-          draw() {
-              ctx.beginPath();
-              ctx.arc(this.x, this.y, circleRadius, 0, Math.PI * 2);
-              ctx.fillStyle = getCurrentColor();
-              ctx.fill();
-              ctx.closePath();
-          }
+    draw() {
+        ctx.save(); // Save the current state of the canvas
+        ctx.translate(this.x, this.y); // Move the origin to the center of the triangle
+        ctx.rotate(this.rotation); // Rotate the canvas by the triangle's rotation
 
-          update() {
-              this.x += this.velocity.x;
-              this.y += this.velocity.y;
+        ctx.beginPath();
+        // Adjusted coordinates since the origin is now at the triangle's center
+        ctx.moveTo(0, -circleRadius);
+        ctx.lineTo(circleRadius, circleRadius);
+        ctx.lineTo(-circleRadius, circleRadius);
+        ctx.closePath();
 
-              if (this.x + circleRadius > width || this.x - circleRadius < 0) {
-                  this.velocity.x = -this.velocity.x;
-              }
-              if (this.y + circleRadius > height || this.y - circleRadius < 0) {
-                  this.velocity.y = -this.velocity.y;
-              }
+        ctx.fillStyle = getCurrentColor();
+        ctx.fill();
 
-              const dx = mouseX - this.x;
-              const dy = mouseY - this.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
+        ctx.restore(); // Restore the canvas to its original state
+    }
 
-              if (distance < 100) {
-                  this.x -= dx * 0.025; // Halved the reaction speed
-                  this.y -= dy * 0.025; // Halved the reaction speed
-              }
+    update() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
 
-              this.draw();
-          }
-      }
+        // Increment the rotation
+        this.rotation += 0.05; // Adjust rotation speed as needed
+
+        if (this.x + circleRadius > width || this.x - circleRadius < 0) {
+            this.velocity.x = -this.velocity.x;
+        }
+        if (this.y + circleRadius > height || this.y - circleRadius < 0) {
+            this.velocity.y = -this.velocity.y;
+        }
+
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+            this.x -= dx * 0.025; // Halved the reaction speed
+            this.y -= dy * 0.025; // Halved the reaction speed
+        }
+
+        this.draw();
+    }
+}
 
       function createCircles() {
           for (let i = 0; i < circleCount; i++) {
               const x = Math.random() * width;
               const y = Math.random() * height;
-              circles.push(new Circle(x, y));
+              circles.push(new Triangle(x, y));
           }
       }
 
