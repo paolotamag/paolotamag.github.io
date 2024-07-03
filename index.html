@@ -750,7 +750,6 @@
   .then(data => {
     reviews = data.review;
     shuffleArray(reviews); // Assign the JSON data to the variable
-    console.log(reviews); // Optional: log the data to verify
   })
   .catch(error => {
     console.error('Error fetching the JSON file:', error);
@@ -777,7 +776,7 @@
     authorName.textContent = review.author;
     authorRole.textContent = review.role;
     reviewText.textContent = review.content;
-    if (reviewText.textContent > 500) {
+    if (reviewText.textContent.length > 500) {
       reviewText.textContent = reviewText.textContent.substring(0, 500) + '...';
     }
     reviewContent.style.opacity = 1;
