@@ -776,8 +776,8 @@
     authorName.textContent = review.author;
     authorRole.textContent = review.role;
     reviewText.textContent = review.content;
-    if (reviewText.textContent.length > 500) {
-      reviewText.textContent = reviewText.textContent.substring(0, 500) + '...';
+    if (reviewText.textContent.length > 440) {
+      reviewText.textContent = reviewText.textContent.substring(0, 440) + '...';
     }
     reviewContent.style.opacity = 1;
   }, 500);
