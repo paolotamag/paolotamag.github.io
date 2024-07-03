@@ -12,780 +12,781 @@
 </head>
 
 <body onload="start()">
-<div class="container">
+  <div class="container">
 
-  <div class = "background_div"  >
-    <img width="1000px" height="1000px" src="slides/random_26.png" id='slider' style="position:absolute; z-index:2;" />
-    <img width="1000px" height="1000px" src="slides/random_27.png" id='slider_two' style="position:absolute; z-index:1;" />
-  </div>
-
-  <canvas id="canvas"></canvas>
-  <script>
-      
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-    let width, height;
-    let mouseX = 0, mouseY = 0;
-    const circles = [];
-    const circleRadius = 2.5; // Halved the radius from 5 to 2.5
-    const circleCount = 100; // Number of circles
-
-    const colorSequence = [
-        '#DF825A', '#E57F55', '#EA9A65', '#EFBD84', '#E3D6B2',
-        '#E3D5A7', '#BBD2CE', '#C0D9CB', '#99BCC8', '#75A0C5',
-        '#7699C3', '#8BB2D1', '#88A9C9', '#92B1CC', '#7A9DC2',
-        '#89ACC7', '#9BAAB0', '#BDB7A0', '#C19587', '#E6B381'
-    ];
-    let colorIndex = 0;
-    let transitionProgress = 0;
-
-    const cycleTimeInMs = 4 * 60 * 1000; // 4 minutes in milliseconds
-    const transitionsPerCycle = colorSequence.length;
-    const msPerTransition = cycleTimeInMs / transitionsPerCycle;
-    const framesPerSecond = 60; // Assuming 60 FPS
-    const transitionSpeed = 1 / (msPerTransition / (1000 / framesPerSecond));
-
-    function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-    }
-
-    function interpolateColor(color1, color2, factor) {
-        const result = color1.slice();
-        for (let i = 0; i < 3; i++) {
-            result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
-        }
-        return result;
-    }
-
-    function hexToRgb(hex) {
-        const bigint = parseInt(hex.slice(1), 16);
-        return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
-    }
-
-    function getCurrentColor() {
-        const currentColor = hexToRgb(colorSequence[colorIndex]);
-        const nextColor = hexToRgb(colorSequence[(colorIndex + 1) % colorSequence.length]);
-        const interpolated = interpolateColor(currentColor, nextColor, transitionProgress);
-        return `rgba(${interpolated[0]}, ${interpolated[1]}, ${interpolated[2]}, 0.7)`;
-    }
-
-    class Circle {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.velocity = {
-                x: (Math.random() - 0.5) * 1, // Halved the speed
-                y: (Math.random() - 0.5) * 1  // Halved the speed
-            };
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, circleRadius, 0, Math.PI * 2);
-            ctx.fillStyle = getCurrentColor();
-            ctx.fill();
-            ctx.closePath();
-        }
-
-        update() {
-            this.x += this.velocity.x;
-            this.y += this.velocity.y;
-
-            if (this.x + circleRadius > width || this.x - circleRadius < 0) {
-                this.velocity.x = -this.velocity.x;
-            }
-            if (this.y + circleRadius > height || this.y - circleRadius < 0) {
-                this.velocity.y = -this.velocity.y;
-            }
-
-            const dx = mouseX - this.x;
-            const dy = mouseY - this.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 100) {
-                this.x -= dx * 0.025; // Halved the reaction speed
-                this.y -= dy * 0.025; // Halved the reaction speed
-            }
-
-            this.draw();
-        }
-    }
-
-    function createCircles() {
-        for (let i = 0; i < circleCount; i++) {
-            const x = Math.random() * width;
-            const y = Math.random() * height;
-            circles.push(new Circle(x, y));
-        }
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-
-        circles.forEach(circle => circle.update());
-
-        transitionProgress += transitionSpeed;
-        if (transitionProgress >= 1) {
-            transitionProgress = 0;
-            colorIndex = (colorIndex + 1) % colorSequence.length;
-        }
-
-        requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    resizeCanvas();
-    createCircles();
-    animate();
-
-  </script>
-  <div class="body_text_2">
-    <img class="mephoto" id="imageCycle" src="me/0.jpg"  ondragstart="return false;" ondrop="return false;"/>
-    <h2>
-    	<a target="_blank" href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/"> <img src="linkedin_logo_new.png" style="position: relative; top: 10px;" ondragstart="return false;" ondrop="return false;"></a>
-    	|
-    	<a target="_blank" href="https://twitter.com/paolotamag"><img src="twitter.jpg" style="position: relative; top: 10px;" ondragstart="return false;" ondrop="return false;"></a> 
-    	|
-    	<a target="_blank" href="https://github.com/paolotamag"><img src="github.png" style="position: relative; top: 10px;" ondragstart="return false;" ondrop="return false;"></a>
-      |
-    	<a target="_blank" href="https://hub.knime.com/paolotamag"><img src="knime.png" height="30px" style="position: relative; top: 5px;" ondragstart="return false;" ondrop="return false;"></a>
-    </h2>
-    <h3>last update: June 24, 2024</h3>
-    <hr>
-    <h2>LinkedIn Recommendations</h2>
-    <p>
-      Read more on the <a target="_blank" href="https://www.linkedin.com/help/linkedin/answer/a541653">Recommendations</a> section of my <a target="_blank" href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/">LinkedIn profile</a>.
-    </p>
-      <div id="reviewSlideshow" class="review-slideshow">
-      <div class="review-content">
-          <div class="review-author">
-              <img src="/api/placeholder/50/50" alt="Author" onerror="this.src='giphy.gif';">
-              <div class="review-author-info">
-                <a target="_blank" href="" class="review-author-link"><span class="review-author-name"></span></a>
-                  <span class="review-author-role"></span>
-              </div>
-          </div>
-          <p class="review-text"></p>
-      </div>
-  </div>
-  </div>
-  
-  <div class = "body_text">
-    <h1> Paolo Tamagnini </h1>
-    <h3>Data Scientist // Data Evangelist // AI Engineer</h3>
-    <h3> paolotamag [at] gmail [dot] com</h3>
-
-    <p>
-    <b>Keywords</b>: <i>visual analytics</i>; <i>machine learning</i>; <i>data science</i>; <i>big data</i>; <i>Python</i>; <i>JavaScript</i>; <i>LLMs</i>; <i>low code</i>; ...
-    </p>
-    <hr>
-
-	<!-- !!!!!!!!!!!!!!! Body !!!!!!!!!!!!!!!! -->
-  <p><b>TL;DR</b>: working in the <a target="_blank" href="https://knime.com">KNIME</a> evangelism team: teaching the software, presenting new trends, pampering advocates, collaborating with universities, implementing drag and drop specialised functionalities, ...</p>
-  <div>
-    <p>Wait, what?</p>
-    <fieldset class="majorpoints">
-    <legend class="majorpointslegend"> &#9658; ... </legend>
-    <div class="hiders" style="display:none;">
-      <p><a target="_blank" href="https://knime.com">KNIME</a> is the open source low-code/no-code platform for democratising everything about data: from data engineering, through ML, all the way to deploying dashboards, web apps, API and scheduled execution. 
-        Users can still add code in SQL, Python, R, JavaScript.. but it's not necessary for most use cases.</p>
-    </div>
-    </fieldset>
+    <div class = "background_div"  >
+      <img width="1000px" height="1000px" src="slides/random_26.png" id='slider' style="position:absolute; z-index:2;" />
+      <img width="1000px" height="1000px" src="slides/random_27.png" id='slider_two' style="position:absolute; z-index:1;" />
     </div>
 
-  
+    <canvas id="canvas"></canvas>
+    <script>
+        
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
 
-        <p>While at KNIME..</p>
-        <fieldset class="majorpoints">
-          <legend class="majorpointslegend"> &#9658; ... </legend>
-          <div class="hiders" style="display:none;">
-            <ul>          
-              <li>
-                In 2023 I joined the <a target="_blank" href="https://www.knime.com/educators-alliance">KNIME Educators Alliance</a> team, collaborating with professors teaching and researching with KNIME from different faculties. 
-                I also started to travel again teaching <a target="_blank" href="https://www.businesswire.com/news/home/20231129134747/en/KNIME-Launches-AI-Learnathon-to-Help-Users-Build-Custom-AI-Powered-Data-Apps-%E2%80%93-No-Coding-Required">codeless prompt engineering</a> 
-                for KNIME Business Hub custom chatbots and other LLMs use cases.
-              </li>
-              <br>
-              <li>
-                In 2022 I have been leading the Upskilling team, <a target="_blank" href="https://www.knime.com/blog/open-source-community-components">scouting components builders</a> from the KNIME community of open source users, 
-                presenting at external communities such as <a target="_blank" href="https://www.youtube.com/watch?v=reK62ooZLlg">Data Science Dojo</a> and <a target="_blank" href="https://www.meetup.com/pydata-london-meetup/events/288545477/">Pydata</a> 
-                on how to develop new KNIME extensions in Python instead of Java.
-              </li>
-              <br>
-              <li>
-                In 2021 I have been writing on new concepts such as <a target="_blank" href="https://www.knime.com/blog/eight-data-app-designs-with-new-refresh-button">data apps</a>, <a target="_blank" href="https://www.knime.com/blog/integrated-deployment-blog-series-episode-1-an-introduction-to-integrated-deployment">integrated deployment</a>, 
-                <a target="_blank" href="https://www.knime.com/blog/model-monitoring-in-data-science-context"></a>MLOps</a> and the <a target="_blank" href="https://www.knime.com/blog/the-data-science-life-cycle-a-new-standard">data science life cycle</a>. 
-                while rolling out verified components in <a target="_blank" href="https://www.knime.com/verified-components-history">monthly releases</a>.
-              </li>
-              <br>
-              <li>
-                Starting from 2020 I have been leading the <a target="_blank" href="https://www.knime.com/verified-components">verified components</a> team at KNIME, 
-                where data science functionalities were packaged via low-code to be easily adopted by KNIME users. I personally implemented drag-and-drop functionalities around AutoML, 
-                <a target="_blank" href="https://www.knime.com/knimepress/explainable-ai">XAI</a> and specific industries use cases.
-              </li>
-              <br>
-              <li>
-                In 2019 I travelled mostly in US and Europe to give workshops and talks about KNIME Analytics Platform and KNIME Server use cases. 
-                I also deep dived into <a target="_blank" href="https://www.knime.com/knimepress/download-guided-labeling">active learning and weak supervision</a>.
-              </li>
-              <br>
-              <li>
-                In 2018 I joined the KNIME team as a Data Scientist in Berlin. My main focus was <a target="_blank" href="https://www.knime.com/blog/how-to-automate-machine-learning">autoML</a> 
-                and <a target="_blank" href="https://en.wikipedia.org/wiki/Guided_analytics">guided analytics</a>.
-              </li>
-            </ul>
-          </div>
-        </fieldset>
+      let width, height;
+      let mouseX = 0, mouseY = 0;
+      const circles = [];
+      const circleRadius = 2.5; // Halved the radius from 5 to 2.5
+      const circleCount = 100; // Number of circles
 
-        <p>Before KNIME..</p>
-        <fieldset class="majorpoints">
-          <legend class="majorpointslegend"> &#9658; ... </legend>
-          <div class="hiders" style="display:none;">
-            <ul> 
-              <li>
-                In 2017 I presented my <a target="_blank" href="https://paolotamag.github.io/Rivelo-Tamagnini-paper.pdf">applied research</a> on XAI at Human-In-the-Loop Data Analytics 
-                (<a target="_blank" href="http://hilda.io/2017/">HILDA</a>) at <a target="_blank" href="http://sigmod2017.org/">SIGMOD 2017</a> in Chicago, in Rome for my graduation at 
-                <a target="_blank" href="http://datascience.i3s.uniroma1.it/it">Sapienza University MSc Data Science degree</a>, and at Google NY in a <a target="_blank" href="https://sites.google.com/site/nycresearchseminar/">research seminar</a>. 
-                My thesis is available <a target="_blank" href="1536242_tamagnini_master_thesis.pdf">here</a>.
-              </li>
-              <br>
-              <li>
-                In 2016 I interned with <a target="_blank" href="http://enrico.bertini.io/">Enrico Bertini</a>, professor at New York University at the time, 
-                on a project involving the development of a visual analytics tool for eXplainable AI in JavaScript (d3.js) and Python (flask + sklearn).
-              </li>
-            </ul>
-          </div>
-        </fieldset>
+      const colorSequence = [
+          '#DF825A', '#E57F55', '#EA9A65', '#EFBD84', '#E3D6B2',
+          '#E3D5A7', '#BBD2CE', '#C0D9CB', '#99BCC8', '#75A0C5',
+          '#7699C3', '#8BB2D1', '#88A9C9', '#92B1CC', '#7A9DC2',
+          '#89ACC7', '#9BAAB0', '#BDB7A0', '#C19587', '#E6B381'
+      ];
+      let colorIndex = 0;
+      let transitionProgress = 0;
 
+      const cycleTimeInMs = 4 * 60 * 1000; // 4 minutes in milliseconds
+      const transitionsPerCycle = colorSequence.length;
+      const msPerTransition = cycleTimeInMs / transitionsPerCycle;
+      const framesPerSecond = 60; // Assuming 60 FPS
+      const transitionSpeed = 1 / (msPerTransition / (1000 / framesPerSecond));
+
+      function resizeCanvas() {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width;
+          canvas.height = height;
+      }
+
+      function interpolateColor(color1, color2, factor) {
+          const result = color1.slice();
+          for (let i = 0; i < 3; i++) {
+              result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+          }
+          return result;
+      }
+
+      function hexToRgb(hex) {
+          const bigint = parseInt(hex.slice(1), 16);
+          return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
+      }
+
+      function getCurrentColor() {
+          const currentColor = hexToRgb(colorSequence[colorIndex]);
+          const nextColor = hexToRgb(colorSequence[(colorIndex + 1) % colorSequence.length]);
+          const interpolated = interpolateColor(currentColor, nextColor, transitionProgress);
+          return `rgba(${interpolated[0]}, ${interpolated[1]}, ${interpolated[2]}, 0.7)`;
+      }
+
+      class Circle {
+          constructor(x, y) {
+              this.x = x;
+              this.y = y;
+              this.velocity = {
+                  x: (Math.random() - 0.5) * 1, // Halved the speed
+                  y: (Math.random() - 0.5) * 1  // Halved the speed
+              };
+          }
+
+          draw() {
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, circleRadius, 0, Math.PI * 2);
+              ctx.fillStyle = getCurrentColor();
+              ctx.fill();
+              ctx.closePath();
+          }
+
+          update() {
+              this.x += this.velocity.x;
+              this.y += this.velocity.y;
+
+              if (this.x + circleRadius > width || this.x - circleRadius < 0) {
+                  this.velocity.x = -this.velocity.x;
+              }
+              if (this.y + circleRadius > height || this.y - circleRadius < 0) {
+                  this.velocity.y = -this.velocity.y;
+              }
+
+              const dx = mouseX - this.x;
+              const dy = mouseY - this.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < 100) {
+                  this.x -= dx * 0.025; // Halved the reaction speed
+                  this.y -= dy * 0.025; // Halved the reaction speed
+              }
+
+              this.draw();
+          }
+      }
+
+      function createCircles() {
+          for (let i = 0; i < circleCount; i++) {
+              const x = Math.random() * width;
+              const y = Math.random() * height;
+              circles.push(new Circle(x, y));
+          }
+      }
+
+      function animate() {
+          ctx.clearRect(0, 0, width, height);
+
+          circles.forEach(circle => circle.update());
+
+          transitionProgress += transitionSpeed;
+          if (transitionProgress >= 1) {
+              transitionProgress = 0;
+              colorIndex = (colorIndex + 1) % colorSequence.length;
+          }
+
+          requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+      });
+
+      resizeCanvas();
+      createCircles();
+      animate();
+
+    </script>
+    <div class="body_text_2">
+      <img class="mephoto" id="imageCycle" src="me/0.jpg"  ondragstart="return false;" ondrop="return false;"/>
+      <h2>
+        <a target="_blank" href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/"> <img src="linkedin_logo_new.png" style="position: relative; top: 10px;" ondragstart="return false;" ondrop="return false;"></a>
+        |
+        <a target="_blank" href="https://twitter.com/paolotamag"><img src="twitter.jpg" style="position: relative; top: 10px;" ondragstart="return false;" ondrop="return false;"></a> 
+        |
+        <a target="_blank" href="https://github.com/paolotamag"><img src="github.png" style="position: relative; top: 10px;" ondragstart="return false;" ondrop="return false;"></a>
+        |
+        <a target="_blank" href="https://hub.knime.com/paolotamag"><img src="knime.png" height="30px" style="position: relative; top: 5px;" ondragstart="return false;" ondrop="return false;"></a>
+      </h2>
+      <h3>last update: June 24, 2024</h3>
+      <hr>
+      <h2>LinkedIn Recommendations</h2>
+      <p>
+        Read more on the <a target="_blank" href="https://www.linkedin.com/help/linkedin/answer/a541653">Recommendations</a> section of my <a target="_blank" href="https://www.linkedin.com/in/paolo-tamagnini-2490433a/">LinkedIn profile</a>.
+      </p>
+        <div id="reviewSlideshow" class="review-slideshow">
+        <div class="review-content">
+            <div class="review-author">
+                <img src="/api/placeholder/50/50" alt="Author" onerror="this.src='giphy.gif';">
+                <div class="review-author-info">
+                  <a target="_blank" href="" class="review-author-link"><span class="review-author-name"></span></a>
+                    <span class="review-author-role"></span>
+                </div>
+            </div>
+            <p class="review-text"></p>
+        </div>
     </div>
-
-
-  <div class="body_text_3">
+    </div>
     
+    <div class = "body_text">
+      <h1> Paolo Tamagnini </h1>
+      <h3>Data Scientist // Data Evangelist // AI Engineer</h3>
+      <h3> paolotamag [at] gmail [dot] com</h3>
 
+      <p>
+      <b>Keywords</b>: <i>visual analytics</i>; <i>machine learning</i>; <i>data science</i>; <i>big data</i>; <i>Python</i>; <i>JavaScript</i>; <i>LLMs</i>; <i>low code</i>; ...
+      </p>
+      <hr>
 
-
-
-    <h2>Media</h2>
+    <!-- !!!!!!!!!!!!!!! Body !!!!!!!!!!!!!!!! -->
+    <p><b>TL;DR</b>: working in the <a target="_blank" href="https://knime.com">KNIME</a> evangelism team: teaching the software, presenting new trends, pampering advocates, collaborating with universities, implementing drag and drop specialised functionalities, ...</p>
     <div>
-    <fieldset class="majorpoints">
-    <legend class="majorpointslegend"> &#9658; ... </legend>
-    <div class="hiders" style="display:none;"> 
-
-      <center><img src="berlino_identity.svg" width="80%" ondragstart="return false;" ondrop="return false;"></center>
-
-
-	    <ul>
-	    <li><a target="_blank" href="https://www.repubblica.it/esteri/2024/05/22/news/generazione_europa_paolo_tamagnini_31_anni_berlino_elezioni_europee-423061576/">italian newspaper</a> (<i>Repubblica - 2024</i>)</li>
-	    <li><a target="_blank" href="https://youtu.be/RfusqHxTplU">italian tv</a> (<i>TG1 - 2018</i>)</li>
-	    <li><a target="_blank" href="http://www.corriere.it/scuola/universita/cards/i-primi-4-laureati-big-data-italia-cosi-numeri-diventano-storie/corso-sapienza_principale.shtml">italian newspaper</a> (<i>Corriere - 2018</i>)</li>
-	    <li><a target="_blank" href="https://youtu.be/l-H-h0tXvoI">italian regional tv</a> (<i>TGR Lazio - 2018</i>)</li>
-	    </ul>
-      <center><a target="_blank" href="https://paolotamag.github.io/weekStar/">&#129370;</a></center>
-
-      
-	</div>
-    </fieldset>
-  </div>
-    <hr>
-    <h2>Certifications</h2>
-    <div>
+      <p>Wait, what?</p>
       <fieldset class="majorpoints">
-        <legend class="majorpointslegend"> &#9658; ... </legend>
-        <div class="hiders" style="display:none;"> 
-    <ul>
-        <li>
-            <h3><a target="_blank" href="https://www.knime.com/certified-trainers"><i>KNIME Certified Trainer</i></a></h3>
-            <p>
-            see all KNIME Certifications on <a target="_blank" href="https://www.credly.com/users/paolo-tamagnini/badges">Credly</a>. 
-            </p>
-        </li>
-        <li>
-          <h3><a target="_blank" href="https://www.coursera.org/specializations/deep-learning"><i>Deep Learning</i></a></h3>
-          <p>
-          a 5-course specialization by deeplearning.ai on Coursera. 
-          <br><a target="_blank" href="https://www.coursera.org/account/accomplishments/specialization/certificate/W66WAMXM7PYZ">Specialization Certificate</a> earned on April 4, 2018.
-        </p>
-
-          <div>
-            <fieldset class="majorpoints">
-              <br>
-                <legend class="majorpointslegend"> &#9658; ... </legend>
-                <div class="hiders" style="display:none"> 
-
-                      <ul class="coursera-deep">
-                        <li>
-                          <a target="_blank" href="https://www.coursera.org/learn/neural-networks-deep-learning"><i>Neural Networks and Deep Learning</i></a> 
-                            <br>
-                          <div>
-                            <fieldset class="majorpoints">
-                            <legend class="majorpointslegend"> &#9658; ... </legend>
-
-                            <div class="hiders" style="display:none"> 
-                              <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/2VR2HKQ9GZ4F">View certificate</a>
-                              <br>
-                              <b>topics</b>: <i>logistic regr., deep and shallow NNs, back prop., .. </i> 
-                              <br>
-                              <b>tools</b>: <i>python, numpy</i>
-                              </div>
-                            </fieldset>
-                            </div>
-                        </li>
-
-
-                        <li>
-                          <a target="_blank" href="https://www.coursera.org/learn/deep-neural-network"><i>Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</i></a>
-                            <br>
-                          <div>
-                            <fieldset class="majorpoints">
-                            <legend class="majorpointslegend"> &#9658; ... </legend>
-
-                            <div class="hiders" style="display:none"> 
-                              <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/K4HE9XJUU7NS">View certificate</a>
-                              <br>
-                              <b>topics</b>: <i>L2 and Dropout Regularization, mini-batch gradient descent, Adam optimization algorithm, Batch Norm, .. </i> 
-                              <br>
-                              <b>tools</b>: <i>python, numpy, TensorFlow</i>
-                              </div>
-                            </fieldset>
-                            </div>
-                        </li>
-
-                        <li>
-                          <a target="_blank" href="https://www.coursera.org/learn/machine-learning-projects"><i>Structuring Machine Learning Projects</i></a> 
-                            <br>
-                          <div>
-                            <fieldset class="majorpoints">
-                            <legend class="majorpointslegend"> &#9658; ... </legend>
-
-                            <div class="hiders" style="display:none"> 
-                              <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/T4C9QXMSY43S">View certificate</a>
-                              <br>
-                              <b>topics</b>: <i>evaluation metric, error analysis, mismatched data distributions, transfer and multi-task learning, .. </i> 
-                              </div>
-                            </fieldset>
-                            </div>
-                        </li>
-
-                        <li>
-                          <a target="_blank" href="https://www.coursera.org/learn/convolutional-neural-networks"><i>Convolutional Neural Networks</i></a>
-                            <br>
-
-                            <div>
-                            <fieldset class="majorpoints">
-                              <legend class="majorpointslegend"> &#9658; ... </legend>
-
-                              <div class="hiders" style="display:none">
-                              <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/YWQ7223A7J3Z">View certificate</a>
-                              <br> 
-                              <b>topics</b>: <i>Computer Vision, CNNs, Conv. and Pooling layers, ResNets, Inception Nets, object detection, YOLO Algorithm, face recognition .. </i> 
-                              <br>
-                              <b>tools</b>: <i>python, TensorFlow, Keras, .. </i>
-                              </div>
-                            </fieldset>
-                            </div>
-                        </li>
-
-                        <li>
-                          <a target="_blank" href="https://www.coursera.org/learn/nlp-sequence-models"><i>Sequence Models</i></a>
-                            <br>
-
-                            <div>
-                            <fieldset class="majorpoints">
-                              <legend class="majorpointslegend"> &#9658; ... </legend>
-
-                              <div class="hiders" style="display:none">
-                              <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/TDJ8WCMNNYUT">View certificate</a>
-                              <br> 
-                              <b>topics</b>: <i>NLP, RNNs, GRUs, LSTMs, word embeddings, speech recognition, attention models, .. </i> 
-                              <br>
-                              <b>tools</b>: <i>python, Keras, Word2Vect, GloVe, .. </i>
-                              </div>
-                            </fieldset>
-                            </div>
-                        </li>
-
-                    </ul>
+      <legend class="majorpointslegend"> &#9658; ... </legend>
+      <div class="hiders" style="display:none;">
+        <p><a target="_blank" href="https://knime.com">KNIME</a> is the open source low-code/no-code platform for democratising everything about data: from data engineering, through ML, all the way to deploying dashboards, web apps, API and scheduled execution. 
+          Users can still add code in SQL, Python, R, JavaScript.. but it's not necessary for most use cases.</p>
       </div>
       </fieldset>
       </div>
-      </li>
-  </ul> 
-</div>
-</fieldset>
-    </div>
-    <hr>
-    <h2>KNIME Projects</h2>
-    <div>
-    <fieldset class="majorpoints">
-    <legend class="majorpointslegend"> &#9658; ... </legend>
 
-    <div class="hiders" style="display:none;"> 
+    
 
-	    <h4>&rarr;  Articles..</h4>
+          <p>While at KNIME..</p>
+          <fieldset class="majorpoints">
+            <legend class="majorpointslegend"> &#9658; ... </legend>
+            <div class="hiders" style="display:none;">
+              <ul>          
+                <li>
+                  In 2023 I joined the <a target="_blank" href="https://www.knime.com/educators-alliance">KNIME Educators Alliance</a> team, collaborating with professors teaching and researching with KNIME from different faculties. 
+                  I also started to travel again teaching <a target="_blank" href="https://www.businesswire.com/news/home/20231129134747/en/KNIME-Launches-AI-Learnathon-to-Help-Users-Build-Custom-AI-Powered-Data-Apps-%E2%80%93-No-Coding-Required">codeless prompt engineering</a> 
+                  for KNIME Business Hub custom chatbots and other LLMs use cases.
+                </li>
+                <br>
+                <li>
+                  In 2022 I have been leading the Upskilling team, <a target="_blank" href="https://www.knime.com/blog/open-source-community-components">scouting components builders</a> from the KNIME community of open source users, 
+                  presenting at external communities such as <a target="_blank" href="https://www.youtube.com/watch?v=reK62ooZLlg">Data Science Dojo</a> and <a target="_blank" href="https://www.meetup.com/pydata-london-meetup/events/288545477/">Pydata</a> 
+                  on how to develop new KNIME extensions in Python instead of Java.
+                </li>
+                <br>
+                <li>
+                  In 2021 I have been writing on new concepts such as <a target="_blank" href="https://www.knime.com/blog/eight-data-app-designs-with-new-refresh-button">data apps</a>, <a target="_blank" href="https://www.knime.com/blog/integrated-deployment-blog-series-episode-1-an-introduction-to-integrated-deployment">integrated deployment</a>, 
+                  <a target="_blank" href="https://www.knime.com/blog/model-monitoring-in-data-science-context"></a>MLOps</a> and the <a target="_blank" href="https://www.knime.com/blog/the-data-science-life-cycle-a-new-standard">data science life cycle</a>. 
+                  while rolling out verified components in <a target="_blank" href="https://www.knime.com/verified-components-history">monthly releases</a>.
+                </li>
+                <br>
+                <li>
+                  Starting from 2020 I have been leading the <a target="_blank" href="https://www.knime.com/verified-components">verified components</a> team at KNIME, 
+                  where data science functionalities were packaged via low-code to be easily adopted by KNIME users. I personally implemented drag-and-drop functionalities around AutoML, 
+                  <a target="_blank" href="https://www.knime.com/knimepress/explainable-ai">XAI</a> and specific industries use cases.
+                </li>
+                <br>
+                <li>
+                  In 2019 I travelled mostly in US and Europe to give workshops and talks about KNIME Analytics Platform and KNIME Server use cases. 
+                  I also deep dived into <a target="_blank" href="https://www.knime.com/knimepress/download-guided-labeling">active learning and weak supervision</a>.
+                </li>
+                <br>
+                <li>
+                  In 2018 I joined the KNIME team as a Data Scientist in Berlin. My main focus was <a target="_blank" href="https://www.knime.com/blog/how-to-automate-machine-learning">autoML</a> 
+                  and <a target="_blank" href="https://en.wikipedia.org/wiki/Guided_analytics">guided analytics</a>.
+                </li>
+              </ul>
+            </div>
+          </fieldset>
 
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;"> 
-	    <ul>
-	    <li>The Data Science Life Cycle: A New Standard for Operationalizing Data Science (<i><a target="_blank" href="https://www.knime.com/blog/the-data-science-life-cycle-a-new-standard">KNIME / blog</i></a>)</li>
+          <p>Before KNIME..</p>
+          <fieldset class="majorpoints">
+            <legend class="majorpointslegend"> &#9658; ... </legend>
+            <div class="hiders" style="display:none;">
+              <ul> 
+                <li>
+                  In 2017 I presented my <a target="_blank" href="https://paolotamag.github.io/Rivelo-Tamagnini-paper.pdf">applied research</a> on XAI at Human-In-the-Loop Data Analytics 
+                  (<a target="_blank" href="http://hilda.io/2017/">HILDA</a>) at <a target="_blank" href="http://sigmod2017.org/">SIGMOD 2017</a> in Chicago, in Rome for my graduation at 
+                  <a target="_blank" href="http://datascience.i3s.uniroma1.it/it">Sapienza University MSc Data Science degree</a>, and at Google NY in a <a target="_blank" href="https://sites.google.com/site/nycresearchseminar/">research seminar</a>. 
+                  My thesis is available <a target="_blank" href="1536242_tamagnini_master_thesis.pdf">here</a>.
+                </li>
+                <br>
+                <li>
+                  In 2016 I interned with <a target="_blank" href="http://enrico.bertini.io/">Enrico Bertini</a>, professor at New York University at the time, 
+                  on a project involving the development of a visual analytics tool for eXplainable AI in JavaScript (d3.js) and Python (flask + sklearn).
+                </li>
+              </ul>
+            </div>
+          </fieldset>
 
-	    <li>Following the Spread of Coronavirus (<i><a target="_blank" href="https://towardsdatascience.com/following-the-spread-of-coronavirus-23626940c125">Towards Data Science / magazine</a></i>) - (<i><a target="_blank" href="https://www.infoworld.com/article/3534510/track-and-analyze-the-covid-19-pandemic-with-knime.html">InfoWorld / magazine</a></i>)</li>
-
-        <li>Labeling with Active Learning (<i><a target="_blank" href="https://www.datasciencecentral.com/profiles/blogs/labeling-with-active-learning">Data Science Central / magazine</a></i>) - (<i><a target="_blank" href="https://www.knime.com/blog/labeling-with-active-learning">KNIME / blog</a></i>)</li>
-
-        <li>Guided Visualization and Exploration (<i><a target="_blank" href="https://www.knime.com/blog/guided-visualization-and-exploration">KNIME / blog</a></i>) (<i><a target="_blank" href="https://www.dataversity.net/guided-visualization-and-guided-exploration/">Dataversity / magazine</a></i>)</li>
-
-        <li>The KNIME Hub - Share and Collaborate (<i><a target="_blank" href="https://www.knime.com/blog/the-knime-hub-share-and-collaborate">KNIME / blog</a></i>)</li>
-
-        <li>The Importance of the Community in Data Science (<i><a target="_blank" href="https://www.datasciencecentral.com/profiles/blogs/the-importance-of-community-in-data-science">Data Science Central / magazine</a></i>)</li>
-
-        <li>Automated Machine Learning: Just How Much? (<i><a target="_blank" href="https://towardsdatascience.com/automated-machine-learning-just-how-much-7330fd4f882e">Towards Data Science / magazine</a></i>) - (<i><a target="_blank" href="https://www.kdnuggets.com/2019/09/automated-machine-learning-just-how-much.html">KDnuggets News / magazine</a></i>) - (<i><a target="_blank" href="https://www.dataversity.net/automated-machine-learning-just-how-much/">Dataversity / magazine</a></i>)</li>
-
-		<li>How to Automate Machine Learning (<i><a target="_blank" href="https://www.infoworld.com/article/3333802/how-to-automate-machine-learning.html">InfoWorld / magazine</i></a>) - (<i><a target="_blank" href="https://www.knime.com/blog/how-to-automate-machine-learning">KNIME / Blog</a></i>)</li>
-
-		<li>Guided Automation for Machine Learning (<i><a target="_blank" href="https://www.infoworld.com/article/3334964/guided-automation-for-machine-learning.html">InfoWorld / magazine</a></i>) - (<i><a target="_blank" href="https://www.knime.com/blog/guided-automation-for-machine-learning-part-ii">KNIME / Blog</a></i>)</li>
-		</ul>
-		</div>
-	    </fieldset>
-	    </div>
-
-	    	   	<h4>&rarr;  Applications..</h4>
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;">
-
-	    	<ul>
-	    		<li>Data Apps Collection (<a target="_blank" href="https://forum.knime.com/t/data-apps-collection/71849">KNIME Forum</a>)</li>
-	    		<li>Verified Components (<a target="_blank" href="https://www.knime.com/verified-components">KNIME Web Page</a>)</li>
-	    		<li>MLOps Framework (<a target="_blank" href="https://kni.me/w/vMMSjNlCCI_4zGIJ">Workflow</a>)</li>
-	    		<li>XAI Framework (<a target="_blank" href="https://hub.knime.com/-/spaces/-/latest/~IEtEf2vySv__hx0A/">Workflows</a>, <a target="_blank" href="https://hub.knime.com/knime/spaces/Examples/latest/00_Components/Model%20Interpretability~WMtQn1U91a-xzZY3/">Components</a>)</li>
-	    		<li>AutoML (<a target="_blank" href="https://kni.me/w/ifIPg5Pr0hCk62GS">Workflow</a>, <a target="_blank" href="https://kni.me/c/33fQGaQzuZByy6hE">Component</a>)</li>
-	    		<li>Guided Labeling (Workflows <a target="_blank" href="https://kni.me/w/y5nhpbd1PP5F4WKH">1</a>, <a target="_blank" href="https://kni.me/w/ZfX6LrTGil-TEwbs">2</a>, <a target="_blank" href="https://kni.me/w/h51quSpB48Z1wLe4">3</a>)</li>
-	    		<li>Guided Exploration (<a target="_blank" href="https://kni.me/w/20LQKtn68R7_89fH">Workflow</a>, <a target="_blank" href="https://kni.me/c/6xXE45YGDpq2_Fqv">Component</a>)</li>
-		    	<li>Guided Automation (<a target="_blank" href="https://kni.me/w/eAGfGtEAIr-1iYR-">Workflow</a>, <a target="_blank" href="https://kni.me/c/tMMYYJy4AK3mv4u-">Component</a>)</li>
-			</ul>
-
-		</div>
-	    </fieldset>
-	    </div>
-
-	    <h4>&rarr;  Blog Posts..</h4>
-
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;"> 
-
-		    <ul>
-		    	<li>How to Set Up Your Python Extensions (<i><a target="_blank" href="https://www.knime.com/blog/how-to-setup-the-python-extension">KNIME / blog</i></a>)</li>
-		    	<li>4 Steps for your Python Team to Develop KNIME Nodes 
-		    		(<i>
-		    			KNIME / blog :
-			    		<a target="_blank" href="https://www.knime.com/blog/4-steps-for-your-python-team-to-develop-knime-nodes">[Article]</a> /  
-				    	<a target="_blank" href="https://github.com/paolotamag/KNIME-Extension-Example">[GitHub]</a>
-			    	</i>)
-			    </li>
-			    <li>Simplify ML Parameter Optimization with a Codeless Approach (<i><a target="_blank" href="https://www.knime.com/blog/simplify-parameter-optimization-codeless">KNIME / blog</i></a>)</li>
-			    <li>Community Components Collections 
-			    	(<i>
-			    		KNIME / blog :
-			    		<a target="_blank" href="https://www.knime.com/blog/best-practices-to-build-components">[Best Practices]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/open-source-community-components">[Winter 2022]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/community-components-spring-collection">[Spring 2022]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/community-components-summer-2022">[Summer 2022]</a> /
-			    		<a target="_blank" href="https://www.knime.com/blog/community-components-fall-2022-collection">[Fall 2022]</a>
-			    		</i>)
-			    	</li>
-			    <li>eXplainable AI (XAI) Blog Series 
-			    	(<i>
-			    		KNIME / blog :
-			    		<a target="_blank" href="https://www.knime.com/blog/banks-use-xai-transparent-credit-scoring">[General]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/understand-ml-model-global-feature-importance">[1]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/xai-local-explanation-view-component">[2]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/explainable-ai-black-box-model-xai-view">[3]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/codeless-counterfactual-explanations-XAI">[4]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/XAI-LIME-stroke-prediction">[5]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/apply-xai-partial-dependence-ICE">[6]</a> / 			   
-			    		<a target="_blank" href="https://www.knime.com/blog/learn-xai">[Learn]</a> / 
-			    		<a target="_blank" href="https://www.knime.com/blog/download-explainable-xai-solutions-hub">[Repo]</a>
-			    	</i>)
-			    </li>
-			  <li>Low Code Scripting in KNIME Components (<i><a target="_blank" href="http://twitter.com/paolotamag/status/1451197558504583171">Twitter / thread</i></a>)</li>
-		    <li>Eight Data App Designs with the New Refresh Button (<i><a target="_blank" href="https://www.knime.com/blog/eight-data-app-designs-with-new-refresh-button">KNIME / blog</i></a>)</li>
-		    
-				<li>Integrated Deployment Blog Series (<i><a target="_blank" href="https://www.knime.com/integrated-deployment-knime-blog-series">KNIME / blog</i></a>)</li>
-
-				<li>Guided Labeling Blog Series (<i><a target="_blank" href="https://www.knime.com/knime-blog-series-guided-labeling">KNIME / blog</i></a>) - (<i><a target="_blank" href="https://www.dataversity.net/?s=guided+labeling">Dataversity / blog</i></a>)</li>
-
-				<li>12 Data Visualization Techniques for Rffective BI Applications by George Lawton (<i><a target="_blank" href="https://searchbusinessanalytics.techtarget.com/tip/12-data-visualization-techniques-for-effective-BI-applications">SearchBusiness Analytics / blog</i></a>)</li>
-
-				<li>Guided Labeling: Human-in-the-Loop Label Generation with Active Learning and Weak Supervision (<i><a target="_blank" href="https://opendatascience.com/guided-labeling-human-in-the-loop-label-generation-with-active-learning-and-weak-supervision/">ODSC / blog</i></a>)</li>
-
-				<li>Lots of Data, No Labels, Now What? (<i><a target="_blank" href="https://opendatascience.com/lots-of-data-no-labels-now-what/">ODSC / blog</i></a>)</li>
-
-				<li>Data Visualization 101: 5 Easy Plots to Get to Know Your Data (<i><a target="_blank" href="https://www.devprojournal.com/business-operations/data-visualization-101-5-easy-plots-to-get-to-know-your-data/">DevPro Journal / magazine</i></a>) - (<i><a target="_blank" href="https://www.knime.com/blog/data-visualizaton-101-five-easy-plots-to-get-to-know-your-data/">KNIME / blog</i></a>)</li>
-
-				<li>Automating Machine Learning: Just How Much? (<i><a target="_blank" href="https://opendatascience.com/automating-machine-learning-just-how-much/">ODSC / blog</i></a>)</li>
-
-				<li>Exploratory Data Analysis with KNIME: Univariate and Bivariate Visual Exploration (<i><a target="_blank" href="https://www.knime.com/blog/exploratory-data-analysis-with-knime-univariate-and-bivariate-visual-exploration">KNIME / vlog</a></i>)
-				</li>
-
-				<li>Intelligently Automating Machine Learning, AI, and Data Science (<i><a target="_blank" href="https://www.knime.com/blog/intelligently-automating-machine-learning-artificial-intelligence-and-data-science">KNIME / vlog</a></i>)</li>
-
-				<li>Interactive Choropleth World Map using Google GeoChart Visualization (<i><a target="_blank" href="https://www.knime.com/blog/JavaScript_Choropleths">KNIME / blog</a></i>) (<i><a target="_blank" href="https://www.dataversity.net/js-show-it-interactive-choropleth-world-map-using-geochart-visualization/">Dataversity / blog</i></a>)</li>
-
-			</ul>
-
-		</div>
-	    </fieldset>
-	    </div>
-
-	    <h4>&rarr;  White Papers..</h4>
-
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;"> 
-
-		    <ul>
-		    	<li>eXplainable AI: Interpreting Machine Learning with XAI (<i><a target="_blank" href="https://www.knime.com/knimepress/explainable-ai">KNIME Press</a></i>)
-		    	</li>
-		    	<li>Guided Labeling: Human-in-the-Loop Label Generation (<i><a target="_blank" href="https://www.knime.com/knimepress/download-guided-labeling">KNIME Press</a></i>)
-		    	</li>
-		    </ul>
+      </div>
 
 
-		</div>
-	    </fieldset>
-	    </div>
-
-	    <h4>&rarr;  Webinars..</h4>
-
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;"> 
-
-		    <ul>
-		    	<li>Teaching Generative AI with KNIME
- (<i><a target="_blank" href="https://www.knime.com/events/teaching-generative-ai-knime">KNIME Events</a></i>)</li>
-		    	<li>Reliable and Reusable Python Script Sharing with KNIME (<i><a target="_blank" href="https://www.youtube.com/live/reK62ooZLlg">Data Science Dojo / YouTube</a></i>)</li>
-		    	<li>Enhancing Jupyter Notebook with Visual Workflows (<i><a target="_blank" href="https://youtu.be/1Rr8Q27k7cQ">KNIMETV / YouTube</a></i>)</li>
-		    	<li>From Words to Wisdom - Text Analytics Use Cases (<i><a target="_blank" href="https://youtu.be/Clw0YmHRspQ">KNIMETV / YouTube</a></i>)</li>
-		    	<li>Guided Labeling: Human-in-the-Loop Label Generation with Active Learning & Weak Supervision (<i><a target="_blank" href="https://youtu.be/LsKVPOVK3yI">KNIMETV / YouTube</a></i>)</li>
-				<li>Visualizing the Spread of COVID-19 Pandemic with KNIME (<i><a target="_blank" href="https://youtu.be/vw8IBlmHdrc">KNIMETV / YouTube</a></i>)</li>
-		   		<li>Behind the Scenes of Guided Analytics</a> (<i><a target="_blank" href="https://youtu.be/hUDXcQ9Yl-0">KNIMETV / YouTube</a></i>)</li>
-        		<li>Guided Automation (<i><a target="_blank" href="https://youtu.be/iMdNFY_hplw?t=400">KNIMETV / YouTube</a></i>)</li>
-		    </ul>
+    <div class="body_text_3">
+      
 
 
-		</div>
-	    </fieldset>
-	    </div>
-
-	    <h4>&rarr;  Talks..</h4>
-
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;"> 
 
 
-		    <ul>
-		    	<li>Maximizing the Potential of Data Science with KNIME and Python (<i><a target="_blank" href="https://youtu.be/SEIVYf3f8Lc?si=nj2tHX3GXRUBbkpF">KNIME Spring Summit 2023</a></i>)</li>
-		    	<li>Tour to the Metaverse of the KNIME Virtual Summit (<i><a target="_blank" href="https://www.knime.com/events/data-talks-community-edition">KNIME Data Talks - Community Edition</a></i>, <a target="_blank" href="https://youtu.be/RKBulwUe68g">YouTube</a>, <i><a target="_blank" href="https://gather.town/app/3LbVaYIsld5Zmhze/main_floor">Gather</a></i>)</li>
-		    	<li>KNIME Time - What's New and Cooking: Data Apps (<i><a target="_blank" href="https://www.knime.com/data-talks-spring-21-presentations">KNIME Spring Data Talks 2021</a></i>, <a target="_blank" href="https://youtu.be/HxLtTznvDTQ?t=475">YouTube</a>)</li>
-		    	<li>Stakeholder Collaboration (<i><a target="_blank" href="https://www.knime.com/knime-fall-summit-2020">KNIME Fall Summit 2020</a></i>, <a target="_blank" href="https://youtu.be/yIFgrtTqdAE">YouTube</a>)</li>
-		    	<li>Guided Labeling: Human-in-the-Loop Label Generation with Active Learning and Weak Supervision (<i><a target="_blank" href="https://odsc.com/speakers/guided-labeling-human-in-the-loop-label-generation-with-active-learning-and-weak-supervision/">ODSC East '20 - Virtual</a></i>)</li>
-				<li>What's New and Cooking in KNIME WebPortal (<i><a target="_blank" href="https://youtu.be/Bu1hedcOkjs">KNIME Fall Summit 2019</a></i>)</li>
-				<li>Guiding AI To Generate the Labels We Do Not Have with Active Learning (<i><a target="_blank" href="https://odsc.com/speakers/guiding-ai-to-generate-the-labels-we-do-not-have-with-active-learning/">ODSC West '19</a></i>)</li>
-				<li>Guided Automation (<i><a target="_blank" href="https://youtu.be/ZLU-HP6slgs">KNIME Spring Summit 2019</a></i>) - (<i><a target="_blank" href="https://www.datasciencefestival.com/video/dsf-meetup-with-knime-2019-paolo-tamagnini/">DSF London Meetup</a></i>) - (<i><a target="_blank" href="https://www.meetup.com/Machine-Learning-Milan/events/263742424/">MLMilan Meetup</a></i>)</li>
-				<li>Visualizing with Guided Analytics: for End Users and Experts (<i><a target="_blank" href="https://youtu.be/sGcaxlVZxdM">KNIME Spring Summit 2019</a></i>)</li>
-				<li>Leveraging H2O Machine Learning with KNIME Analytics Platform (<i><a target="_blank" href="https://youtu.be/qSjIAjgMkjg">H2O.ai + KNIME Meetup</a></i>)</li>
-			</ul>
-
-		</div>
-	    </fieldset>
-	    </div>
-
-	    <h4>&rarr;  Workshops..</h4>
-	    <div>
-	    <fieldset class="majorpoints">
-	    <legend class="majorpointslegend"> &#9658; ... </legend>
-	    <div class="hiders" style="display:none;">
-
-	    		<p><b>AI Learnathon</b> // <u>Topics:</u> LLMs, Retrieval Augmented Generation (RAG), chatbots // <a target="_blank" href="https://forum.knime.com/t/knime-ai-learnathons-are-here/73733">Forum</a> // <a target="_blank" href="https://www.businesswire.com/news/home/20231129134747/en/KNIME-Launches-AI-Learnathon-to-Help-Users-Build-Custom-AI-Powered-Data-Apps-%E2%80%93-No-Coding-Required">Press Release</a></p>
-	 
-
-		    <ul>
-				<li><a target="_blank" href="https://www.knime.com/events/ai-learnathon-build-chatbot-without-coding-live-berlin">Berlin, DE</a> (<i>2023-12-14</i>)</li>
-				<li><a target="_blank" href="https://www.knime.com/events/ai-learnathon-build-chatbot-without-coding-live-nottingham">Nottingham, UK</a> (<i>2023-11-30</i>)</li>
-				<li><a target="_blank" href="https://www.knime.com/events/ai-learnathon-build-chatbot-without-coding-live-hamburg">Hamburg, DE</a> (<i>2023-11-23</i>)</li>
-		    </ul>
-
-		   	<p><b>Python Integration</b> // <u>Topics:</u> develop low-code/no-code tools in Python</p>
-
-		    <ul>
-		    	<li>Pydata, (Berlin - EN) (<i>2022-11-16</i>) [<a target="_blank" href="https://www.meetup.com/pydata-berlin/events/289630176/">Meetup</a>]</li>
-		    	<li>Data Science Dojo, (Online - EN) (<i>2022-10-19</i>) [<a target="_blank" href="https://www.meetup.com/data-science-dojo-karachi/events/288738730/">Meetup</a>]</li>
-		    	<li>PyData, (London - EN) (<i>2022-10-03</i>) [<a target="_blank" href="https://www.meetup.com/pydata-london-meetup/events/288545477/">Meetup</a>]</li>
-			</ul>
-
-		    <p><b>Data Science Learnathon</b> // <u>Topics:</u> data prep, modelling, deployment</p>
-
-		    <ul>
-		    	<li><a target="_blank" href="https://www.meetup.com/it-IT/berlin-knime-users/events/298882557/">Berlin / DACH, (EN)</a> (<i>2024-03-21</i>)</li>
-			    <li><a target="_blank" href="https://www.knime.com/events/learnathon-2106">Western Market, (EN)</a> (<i>2021-06-01</i>) [<a target="_blank" href="https://gather.town/app/6rk4N8SnDy037qct/Lernathon">Gather</a>]</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/virtual-data-science-learnathon-oct-7-2020">African Market, (EN)</a> (<i>2020-10-07</i>) [<a target="_blank" href="https://youtu.be/9gYCzsTMN5o">video</a>]</li>
-			    <li><a target="_blank" href="https://odsc.com/speakers/virtual-data-science-learnathon-2/">ODSC Europe '20, (EN)</a> (<i>2020-09-17</i>)</li>
-				<li><a target="_blank" href="https://www.knime.com/about/events/virtual-data-science-learnathon-online-june-10-2020">Asian Market, (EN)</a> (<i>2020-06-16</i>) [videos (<a target="_blank" href="https://youtu.be/IQ0ylJVAjeU">1</a>,<a target="_blank" href="https://youtu.be/gXCFHmDseTo">2</a>)]</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/virtual-data-science-learnathon-italian-online-may-28-2020">Italian Market, (IT)</a> (<i>2020-05-28</i>) [<a target="_blank" href="https://www.youtube.com/watch?v=691CoFvhl0E">video</a>]</li>
-		    </ul>
-
-		   	<p><b>KNIME Pros Learnathon</b> // <u>Topics:</u> sharing, open source, community</p>
-
-		    <ul>
-		    	<li><a target="_blank" href="https://www.knime.com/knime-fall-summit-community-day-2020">KNIME Fall Summit 2020, (Online - EN)</a> (<i>2020-11-20</i>) [<a target="_blank" href="https://www.youtube.com/playlist?list=PLz3mQ6OlTI0aHVzH1lAgdUW-ZymlEb_eN">YouTube</a>]</li>
-			</ul>
-
-			<p><b>Guided Analytics Learnathon</b> // <u>Topics:</u> autoML, data visualization, visual analytics.</p>
-	 
-
-		    <ul>
-				<li><a target="_blank" href="https://www.meetup.com/meetup-group-UJyLXFJY/events/267317778/">Dublin, IE</a> (<i>2020-01-30</i>)</li>
-				<li><a target="_blank" href="https://www.knime.com/about/events/guided-analytics-learnathon-building-apps-for-automated-machine-learning-berlin-sept-2019">Berlin, DE</a> (<i>2019-09-25</i>)</li>
-				<li><a target="_blank" href="https://confengine.com/odsc-india-2019/proposal/10390/guided-analytics-building-applications-for-automated-machine-learning">Bangalore, IN</a> (<i>2019-08-08</i>)</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/guided-analytics-learnathon-building-applications-for-automated-machine-learning-rome">Rome, IT</a> (<i>2019-05-28</i>)</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/guided-analytics-learnathon-building-applications-for-automated-machine-learning-zurich-may-2019">Zurich, CH</a> (<i>2019-05-23</i>)</li>
-			    <li><a target="_blank" href="https://odsc.com/speakers/guided-analytics-learnathon-building-applications-for-automated-machine-learning/">Boston, US</a> (<i>2019-05-02</i>)</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/knime-guided-analytics-learnathon-building-applications-for-automated-machine-learning-nantes-apr-2019">Nantes, FR</a> (<i>2019-04-03</i>)</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/knime-spring-summit-2019-berlin#workshops">Berlin, DE</a> (<i>2019-03-21</i>)</li>
-			    <li><a target="_blank" href="https://www.knime.com/about/events/knime-guided-analytics-learnathon-building-applications-for-automated-machine-learning-montrouge-feb-2019">Paris, FR</a> (<i>2019-02-21</i>)</li>
-		    </ul>
-
-
-		</div>
-	    </fieldset>
-	    </div>
-
-
-	
-	</div>
-    </fieldset>
-    </div>
-    <hr>
-    <h2>Coding Projects</h2>
-    <div>
+      <h2>Media</h2>
+      <div>
       <fieldset class="majorpoints">
+      <legend class="majorpointslegend"> &#9658; ... </legend>
+      <div class="hiders" style="display:none;"> 
+
+        <center><img src="berlino_identity.svg" width="80%" ondragstart="return false;" ondrop="return false;"></center>
+
+
+        <ul>
+        <li><a target="_blank" href="https://www.repubblica.it/esteri/2024/05/22/news/generazione_europa_paolo_tamagnini_31_anni_berlino_elezioni_europee-423061576/">italian newspaper</a> (<i>Repubblica - 2024</i>)</li>
+        <li><a target="_blank" href="https://youtu.be/RfusqHxTplU">italian tv</a> (<i>TG1 - 2018</i>)</li>
+        <li><a target="_blank" href="http://www.corriere.it/scuola/universita/cards/i-primi-4-laureati-big-data-italia-cosi-numeri-diventano-storie/corso-sapienza_principale.shtml">italian newspaper</a> (<i>Corriere - 2018</i>)</li>
+        <li><a target="_blank" href="https://youtu.be/l-H-h0tXvoI">italian regional tv</a> (<i>TGR Lazio - 2018</i>)</li>
+        </ul>
+        <center><a target="_blank" href="https://paolotamag.github.io/weekStar/">&#129370;</a></center>
+
+        
+    </div>
+      </fieldset>
+    </div>
+      <hr>
+      <h2>Certifications</h2>
+      <div>
+        <fieldset class="majorpoints">
+          <legend class="majorpointslegend"> &#9658; ... </legend>
+          <div class="hiders" style="display:none;"> 
+      <ul>
+          <li>
+              <h3><a target="_blank" href="https://www.knime.com/certified-trainers"><i>KNIME Certified Trainer</i></a></h3>
+              <p>
+              see all KNIME Certifications on <a target="_blank" href="https://www.credly.com/users/paolo-tamagnini/badges">Credly</a>. 
+              </p>
+          </li>
+          <li>
+            <h3><a target="_blank" href="https://www.coursera.org/specializations/deep-learning"><i>Deep Learning</i></a></h3>
+            <p>
+            a 5-course specialization by deeplearning.ai on Coursera. 
+            <br><a target="_blank" href="https://www.coursera.org/account/accomplishments/specialization/certificate/W66WAMXM7PYZ">Specialization Certificate</a> earned on April 4, 2018.
+          </p>
+
+            <div>
+              <fieldset class="majorpoints">
+                <br>
+                  <legend class="majorpointslegend"> &#9658; ... </legend>
+                  <div class="hiders" style="display:none"> 
+
+                        <ul class="coursera-deep">
+                          <li>
+                            <a target="_blank" href="https://www.coursera.org/learn/neural-networks-deep-learning"><i>Neural Networks and Deep Learning</i></a> 
+                              <br>
+                            <div>
+                              <fieldset class="majorpoints">
+                              <legend class="majorpointslegend"> &#9658; ... </legend>
+
+                              <div class="hiders" style="display:none"> 
+                                <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/2VR2HKQ9GZ4F">View certificate</a>
+                                <br>
+                                <b>topics</b>: <i>logistic regr., deep and shallow NNs, back prop., .. </i> 
+                                <br>
+                                <b>tools</b>: <i>python, numpy</i>
+                                </div>
+                              </fieldset>
+                              </div>
+                          </li>
+
+
+                          <li>
+                            <a target="_blank" href="https://www.coursera.org/learn/deep-neural-network"><i>Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</i></a>
+                              <br>
+                            <div>
+                              <fieldset class="majorpoints">
+                              <legend class="majorpointslegend"> &#9658; ... </legend>
+
+                              <div class="hiders" style="display:none"> 
+                                <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/K4HE9XJUU7NS">View certificate</a>
+                                <br>
+                                <b>topics</b>: <i>L2 and Dropout Regularization, mini-batch gradient descent, Adam optimization algorithm, Batch Norm, .. </i> 
+                                <br>
+                                <b>tools</b>: <i>python, numpy, TensorFlow</i>
+                                </div>
+                              </fieldset>
+                              </div>
+                          </li>
+
+                          <li>
+                            <a target="_blank" href="https://www.coursera.org/learn/machine-learning-projects"><i>Structuring Machine Learning Projects</i></a> 
+                              <br>
+                            <div>
+                              <fieldset class="majorpoints">
+                              <legend class="majorpointslegend"> &#9658; ... </legend>
+
+                              <div class="hiders" style="display:none"> 
+                                <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/T4C9QXMSY43S">View certificate</a>
+                                <br>
+                                <b>topics</b>: <i>evaluation metric, error analysis, mismatched data distributions, transfer and multi-task learning, .. </i> 
+                                </div>
+                              </fieldset>
+                              </div>
+                          </li>
+
+                          <li>
+                            <a target="_blank" href="https://www.coursera.org/learn/convolutional-neural-networks"><i>Convolutional Neural Networks</i></a>
+                              <br>
+
+                              <div>
+                              <fieldset class="majorpoints">
+                                <legend class="majorpointslegend"> &#9658; ... </legend>
+
+                                <div class="hiders" style="display:none">
+                                <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/YWQ7223A7J3Z">View certificate</a>
+                                <br> 
+                                <b>topics</b>: <i>Computer Vision, CNNs, Conv. and Pooling layers, ResNets, Inception Nets, object detection, YOLO Algorithm, face recognition .. </i> 
+                                <br>
+                                <b>tools</b>: <i>python, TensorFlow, Keras, .. </i>
+                                </div>
+                              </fieldset>
+                              </div>
+                          </li>
+
+                          <li>
+                            <a target="_blank" href="https://www.coursera.org/learn/nlp-sequence-models"><i>Sequence Models</i></a>
+                              <br>
+
+                              <div>
+                              <fieldset class="majorpoints">
+                                <legend class="majorpointslegend"> &#9658; ... </legend>
+
+                                <div class="hiders" style="display:none">
+                                <a target="_blank" href="https://www.coursera.org/account/accomplishments/certificate/TDJ8WCMNNYUT">View certificate</a>
+                                <br> 
+                                <b>topics</b>: <i>NLP, RNNs, GRUs, LSTMs, word embeddings, speech recognition, attention models, .. </i> 
+                                <br>
+                                <b>tools</b>: <i>python, Keras, Word2Vect, GloVe, .. </i>
+                                </div>
+                              </fieldset>
+                              </div>
+                          </li>
+
+                      </ul>
+        </div>
+        </fieldset>
+        </div>
+        </li>
+    </ul> 
+  </div>
+  </fieldset>
+      </div>
+      <hr>
+      <h2>KNIME Projects</h2>
+      <div>
+      <fieldset class="majorpoints">
+      <legend class="majorpointslegend"> &#9658; ... </legend>
+
+      <div class="hiders" style="display:none;"> 
+
+        <h4>&rarr;  Articles..</h4>
+
+        <div>
+        <fieldset class="majorpoints">
         <legend class="majorpointslegend"> &#9658; ... </legend>
         <div class="hiders" style="display:none;"> 
         <ul>
-          <li><a target="_blank" href="https://github.com/paolotamag/streamlit_apps">streamlit_apps</a> - experimenting data apps for marketing analytics research.</li>
-          <li><a target="_blank" href="http://nyuvis-web.poly.edu/projects/rivelo/">Rivelo</a> - visual analytics tool for machine learning explanations.</li>
-          <li><a target="_blank" href="https://github.com/nyuvis/partial_dependence">partial_dependence</a> - python package for machine learning visualization.</li>
-        </ul>
+        <li>The Data Science Life Cycle: A New Standard for Operationalizing Data Science (<i><a target="_blank" href="https://www.knime.com/blog/the-data-science-life-cycle-a-new-standard">KNIME / blog</i></a>)</li>
+
+        <li>Following the Spread of Coronavirus (<i><a target="_blank" href="https://towardsdatascience.com/following-the-spread-of-coronavirus-23626940c125">Towards Data Science / magazine</a></i>) - (<i><a target="_blank" href="https://www.infoworld.com/article/3534510/track-and-analyze-the-covid-19-pandemic-with-knime.html">InfoWorld / magazine</a></i>)</li>
+
+          <li>Labeling with Active Learning (<i><a target="_blank" href="https://www.datasciencecentral.com/profiles/blogs/labeling-with-active-learning">Data Science Central / magazine</a></i>) - (<i><a target="_blank" href="https://www.knime.com/blog/labeling-with-active-learning">KNIME / blog</a></i>)</li>
+
+          <li>Guided Visualization and Exploration (<i><a target="_blank" href="https://www.knime.com/blog/guided-visualization-and-exploration">KNIME / blog</a></i>) (<i><a target="_blank" href="https://www.dataversity.net/guided-visualization-and-guided-exploration/">Dataversity / magazine</a></i>)</li>
+
+          <li>The KNIME Hub - Share and Collaborate (<i><a target="_blank" href="https://www.knime.com/blog/the-knime-hub-share-and-collaborate">KNIME / blog</a></i>)</li>
+
+          <li>The Importance of the Community in Data Science (<i><a target="_blank" href="https://www.datasciencecentral.com/profiles/blogs/the-importance-of-community-in-data-science">Data Science Central / magazine</a></i>)</li>
+
+          <li>Automated Machine Learning: Just How Much? (<i><a target="_blank" href="https://towardsdatascience.com/automated-machine-learning-just-how-much-7330fd4f882e">Towards Data Science / magazine</a></i>) - (<i><a target="_blank" href="https://www.kdnuggets.com/2019/09/automated-machine-learning-just-how-much.html">KDnuggets News / magazine</a></i>) - (<i><a target="_blank" href="https://www.dataversity.net/automated-machine-learning-just-how-much/">Dataversity / magazine</a></i>)</li>
+
+      <li>How to Automate Machine Learning (<i><a target="_blank" href="https://www.infoworld.com/article/3333802/how-to-automate-machine-learning.html">InfoWorld / magazine</i></a>) - (<i><a target="_blank" href="https://www.knime.com/blog/how-to-automate-machine-learning">KNIME / Blog</a></i>)</li>
+
+      <li>Guided Automation for Machine Learning (<i><a target="_blank" href="https://www.infoworld.com/article/3334964/guided-automation-for-machine-learning.html">InfoWorld / magazine</a></i>) - (<i><a target="_blank" href="https://www.knime.com/blog/guided-automation-for-machine-learning-part-ii">KNIME / Blog</a></i>)</li>
+      </ul>
+      </div>
+        </fieldset>
         </div>
-      </fieldset>
+
+              <h4>&rarr;  Applications..</h4>
+        <div>
+        <fieldset class="majorpoints">
+        <legend class="majorpointslegend"> &#9658; ... </legend>
+        <div class="hiders" style="display:none;">
+
+          <ul>
+            <li>Data Apps Collection (<a target="_blank" href="https://forum.knime.com/t/data-apps-collection/71849">KNIME Forum</a>)</li>
+            <li>Verified Components (<a target="_blank" href="https://www.knime.com/verified-components">KNIME Web Page</a>)</li>
+            <li>MLOps Framework (<a target="_blank" href="https://kni.me/w/vMMSjNlCCI_4zGIJ">Workflow</a>)</li>
+            <li>XAI Framework (<a target="_blank" href="https://hub.knime.com/-/spaces/-/latest/~IEtEf2vySv__hx0A/">Workflows</a>, <a target="_blank" href="https://hub.knime.com/knime/spaces/Examples/latest/00_Components/Model%20Interpretability~WMtQn1U91a-xzZY3/">Components</a>)</li>
+            <li>AutoML (<a target="_blank" href="https://kni.me/w/ifIPg5Pr0hCk62GS">Workflow</a>, <a target="_blank" href="https://kni.me/c/33fQGaQzuZByy6hE">Component</a>)</li>
+            <li>Guided Labeling (Workflows <a target="_blank" href="https://kni.me/w/y5nhpbd1PP5F4WKH">1</a>, <a target="_blank" href="https://kni.me/w/ZfX6LrTGil-TEwbs">2</a>, <a target="_blank" href="https://kni.me/w/h51quSpB48Z1wLe4">3</a>)</li>
+            <li>Guided Exploration (<a target="_blank" href="https://kni.me/w/20LQKtn68R7_89fH">Workflow</a>, <a target="_blank" href="https://kni.me/c/6xXE45YGDpq2_Fqv">Component</a>)</li>
+            <li>Guided Automation (<a target="_blank" href="https://kni.me/w/eAGfGtEAIr-1iYR-">Workflow</a>, <a target="_blank" href="https://kni.me/c/tMMYYJy4AK3mv4u-">Component</a>)</li>
+        </ul>
+
+      </div>
+        </fieldset>
+        </div>
+
+        <h4>&rarr;  Blog Posts..</h4>
+
+        <div>
+        <fieldset class="majorpoints">
+        <legend class="majorpointslegend"> &#9658; ... </legend>
+        <div class="hiders" style="display:none;"> 
+
+          <ul>
+            <li>How to Set Up Your Python Extensions (<i><a target="_blank" href="https://www.knime.com/blog/how-to-setup-the-python-extension">KNIME / blog</i></a>)</li>
+            <li>4 Steps for your Python Team to Develop KNIME Nodes 
+              (<i>
+                KNIME / blog :
+                <a target="_blank" href="https://www.knime.com/blog/4-steps-for-your-python-team-to-develop-knime-nodes">[Article]</a> /  
+                <a target="_blank" href="https://github.com/paolotamag/KNIME-Extension-Example">[GitHub]</a>
+              </i>)
+            </li>
+            <li>Simplify ML Parameter Optimization with a Codeless Approach (<i><a target="_blank" href="https://www.knime.com/blog/simplify-parameter-optimization-codeless">KNIME / blog</i></a>)</li>
+            <li>Community Components Collections 
+              (<i>
+                KNIME / blog :
+                <a target="_blank" href="https://www.knime.com/blog/best-practices-to-build-components">[Best Practices]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/open-source-community-components">[Winter 2022]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/community-components-spring-collection">[Spring 2022]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/community-components-summer-2022">[Summer 2022]</a> /
+                <a target="_blank" href="https://www.knime.com/blog/community-components-fall-2022-collection">[Fall 2022]</a>
+                </i>)
+              </li>
+            <li>eXplainable AI (XAI) Blog Series 
+              (<i>
+                KNIME / blog :
+                <a target="_blank" href="https://www.knime.com/blog/banks-use-xai-transparent-credit-scoring">[General]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/understand-ml-model-global-feature-importance">[1]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/xai-local-explanation-view-component">[2]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/explainable-ai-black-box-model-xai-view">[3]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/codeless-counterfactual-explanations-XAI">[4]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/XAI-LIME-stroke-prediction">[5]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/apply-xai-partial-dependence-ICE">[6]</a> / 			   
+                <a target="_blank" href="https://www.knime.com/blog/learn-xai">[Learn]</a> / 
+                <a target="_blank" href="https://www.knime.com/blog/download-explainable-xai-solutions-hub">[Repo]</a>
+              </i>)
+            </li>
+          <li>Low Code Scripting in KNIME Components (<i><a target="_blank" href="http://twitter.com/paolotamag/status/1451197558504583171">Twitter / thread</i></a>)</li>
+          <li>Eight Data App Designs with the New Refresh Button (<i><a target="_blank" href="https://www.knime.com/blog/eight-data-app-designs-with-new-refresh-button">KNIME / blog</i></a>)</li>
+          
+          <li>Integrated Deployment Blog Series (<i><a target="_blank" href="https://www.knime.com/integrated-deployment-knime-blog-series">KNIME / blog</i></a>)</li>
+
+          <li>Guided Labeling Blog Series (<i><a target="_blank" href="https://www.knime.com/knime-blog-series-guided-labeling">KNIME / blog</i></a>) - (<i><a target="_blank" href="https://www.dataversity.net/?s=guided+labeling">Dataversity / blog</i></a>)</li>
+
+          <li>12 Data Visualization Techniques for Rffective BI Applications by George Lawton (<i><a target="_blank" href="https://searchbusinessanalytics.techtarget.com/tip/12-data-visualization-techniques-for-effective-BI-applications">SearchBusiness Analytics / blog</i></a>)</li>
+
+          <li>Guided Labeling: Human-in-the-Loop Label Generation with Active Learning and Weak Supervision (<i><a target="_blank" href="https://opendatascience.com/guided-labeling-human-in-the-loop-label-generation-with-active-learning-and-weak-supervision/">ODSC / blog</i></a>)</li>
+
+          <li>Lots of Data, No Labels, Now What? (<i><a target="_blank" href="https://opendatascience.com/lots-of-data-no-labels-now-what/">ODSC / blog</i></a>)</li>
+
+          <li>Data Visualization 101: 5 Easy Plots to Get to Know Your Data (<i><a target="_blank" href="https://www.devprojournal.com/business-operations/data-visualization-101-5-easy-plots-to-get-to-know-your-data/">DevPro Journal / magazine</i></a>) - (<i><a target="_blank" href="https://www.knime.com/blog/data-visualizaton-101-five-easy-plots-to-get-to-know-your-data/">KNIME / blog</i></a>)</li>
+
+          <li>Automating Machine Learning: Just How Much? (<i><a target="_blank" href="https://opendatascience.com/automating-machine-learning-just-how-much/">ODSC / blog</i></a>)</li>
+
+          <li>Exploratory Data Analysis with KNIME: Univariate and Bivariate Visual Exploration (<i><a target="_blank" href="https://www.knime.com/blog/exploratory-data-analysis-with-knime-univariate-and-bivariate-visual-exploration">KNIME / vlog</a></i>)
+          </li>
+
+          <li>Intelligently Automating Machine Learning, AI, and Data Science (<i><a target="_blank" href="https://www.knime.com/blog/intelligently-automating-machine-learning-artificial-intelligence-and-data-science">KNIME / vlog</a></i>)</li>
+
+          <li>Interactive Choropleth World Map using Google GeoChart Visualization (<i><a target="_blank" href="https://www.knime.com/blog/JavaScript_Choropleths">KNIME / blog</a></i>) (<i><a target="_blank" href="https://www.dataversity.net/js-show-it-interactive-choropleth-world-map-using-geochart-visualization/">Dataversity / blog</i></a>)</li>
+
+        </ul>
+
+      </div>
+        </fieldset>
+        </div>
+
+        <h4>&rarr;  White Papers..</h4>
+
+        <div>
+        <fieldset class="majorpoints">
+        <legend class="majorpointslegend"> &#9658; ... </legend>
+        <div class="hiders" style="display:none;"> 
+
+          <ul>
+            <li>eXplainable AI: Interpreting Machine Learning with XAI (<i><a target="_blank" href="https://www.knime.com/knimepress/explainable-ai">KNIME Press</a></i>)
+            </li>
+            <li>Guided Labeling: Human-in-the-Loop Label Generation (<i><a target="_blank" href="https://www.knime.com/knimepress/download-guided-labeling">KNIME Press</a></i>)
+            </li>
+          </ul>
+
+
+      </div>
+        </fieldset>
+        </div>
+
+        <h4>&rarr;  Webinars..</h4>
+
+        <div>
+        <fieldset class="majorpoints">
+        <legend class="majorpointslegend"> &#9658; ... </legend>
+        <div class="hiders" style="display:none;"> 
+
+          <ul>
+            <li>Teaching Generative AI with KNIME
+  (<i><a target="_blank" href="https://www.knime.com/events/teaching-generative-ai-knime">KNIME Events</a></i>)</li>
+            <li>Reliable and Reusable Python Script Sharing with KNIME (<i><a target="_blank" href="https://www.youtube.com/live/reK62ooZLlg">Data Science Dojo / YouTube</a></i>)</li>
+            <li>Enhancing Jupyter Notebook with Visual Workflows (<i><a target="_blank" href="https://youtu.be/1Rr8Q27k7cQ">KNIMETV / YouTube</a></i>)</li>
+            <li>From Words to Wisdom - Text Analytics Use Cases (<i><a target="_blank" href="https://youtu.be/Clw0YmHRspQ">KNIMETV / YouTube</a></i>)</li>
+            <li>Guided Labeling: Human-in-the-Loop Label Generation with Active Learning & Weak Supervision (<i><a target="_blank" href="https://youtu.be/LsKVPOVK3yI">KNIMETV / YouTube</a></i>)</li>
+          <li>Visualizing the Spread of COVID-19 Pandemic with KNIME (<i><a target="_blank" href="https://youtu.be/vw8IBlmHdrc">KNIMETV / YouTube</a></i>)</li>
+            <li>Behind the Scenes of Guided Analytics</a> (<i><a target="_blank" href="https://youtu.be/hUDXcQ9Yl-0">KNIMETV / YouTube</a></i>)</li>
+              <li>Guided Automation (<i><a target="_blank" href="https://youtu.be/iMdNFY_hplw?t=400">KNIMETV / YouTube</a></i>)</li>
+          </ul>
+
+
+      </div>
+        </fieldset>
+        </div>
+
+        <h4>&rarr;  Talks..</h4>
+
+        <div>
+        <fieldset class="majorpoints">
+        <legend class="majorpointslegend"> &#9658; ... </legend>
+        <div class="hiders" style="display:none;"> 
+
+
+          <ul>
+            <li>Maximizing the Potential of Data Science with KNIME and Python (<i><a target="_blank" href="https://youtu.be/SEIVYf3f8Lc?si=nj2tHX3GXRUBbkpF">KNIME Spring Summit 2023</a></i>)</li>
+            <li>Tour to the Metaverse of the KNIME Virtual Summit (<i><a target="_blank" href="https://www.knime.com/events/data-talks-community-edition">KNIME Data Talks - Community Edition</a></i>, <a target="_blank" href="https://youtu.be/RKBulwUe68g">YouTube</a>, <i><a target="_blank" href="https://gather.town/app/3LbVaYIsld5Zmhze/main_floor">Gather</a></i>)</li>
+            <li>KNIME Time - What's New and Cooking: Data Apps (<i><a target="_blank" href="https://www.knime.com/data-talks-spring-21-presentations">KNIME Spring Data Talks 2021</a></i>, <a target="_blank" href="https://youtu.be/HxLtTznvDTQ?t=475">YouTube</a>)</li>
+            <li>Stakeholder Collaboration (<i><a target="_blank" href="https://www.knime.com/knime-fall-summit-2020">KNIME Fall Summit 2020</a></i>, <a target="_blank" href="https://youtu.be/yIFgrtTqdAE">YouTube</a>)</li>
+            <li>Guided Labeling: Human-in-the-Loop Label Generation with Active Learning and Weak Supervision (<i><a target="_blank" href="https://odsc.com/speakers/guided-labeling-human-in-the-loop-label-generation-with-active-learning-and-weak-supervision/">ODSC East '20 - Virtual</a></i>)</li>
+          <li>What's New and Cooking in KNIME WebPortal (<i><a target="_blank" href="https://youtu.be/Bu1hedcOkjs">KNIME Fall Summit 2019</a></i>)</li>
+          <li>Guiding AI To Generate the Labels We Do Not Have with Active Learning (<i><a target="_blank" href="https://odsc.com/speakers/guiding-ai-to-generate-the-labels-we-do-not-have-with-active-learning/">ODSC West '19</a></i>)</li>
+          <li>Guided Automation (<i><a target="_blank" href="https://youtu.be/ZLU-HP6slgs">KNIME Spring Summit 2019</a></i>) - (<i><a target="_blank" href="https://www.datasciencefestival.com/video/dsf-meetup-with-knime-2019-paolo-tamagnini/">DSF London Meetup</a></i>) - (<i><a target="_blank" href="https://www.meetup.com/Machine-Learning-Milan/events/263742424/">MLMilan Meetup</a></i>)</li>
+          <li>Visualizing with Guided Analytics: for End Users and Experts (<i><a target="_blank" href="https://youtu.be/sGcaxlVZxdM">KNIME Spring Summit 2019</a></i>)</li>
+          <li>Leveraging H2O Machine Learning with KNIME Analytics Platform (<i><a target="_blank" href="https://youtu.be/qSjIAjgMkjg">H2O.ai + KNIME Meetup</a></i>)</li>
+        </ul>
+
+      </div>
+        </fieldset>
+        </div>
+
+        <h4>&rarr;  Workshops..</h4>
+        <div>
+        <fieldset class="majorpoints">
+        <legend class="majorpointslegend"> &#9658; ... </legend>
+        <div class="hiders" style="display:none;">
+
+            <p><b>AI Learnathon</b> // <u>Topics:</u> LLMs, Retrieval Augmented Generation (RAG), chatbots // <a target="_blank" href="https://forum.knime.com/t/knime-ai-learnathons-are-here/73733">Forum</a> // <a target="_blank" href="https://www.businesswire.com/news/home/20231129134747/en/KNIME-Launches-AI-Learnathon-to-Help-Users-Build-Custom-AI-Powered-Data-Apps-%E2%80%93-No-Coding-Required">Press Release</a></p>
+    
+
+          <ul>
+          <li><a target="_blank" href="https://www.knime.com/events/ai-learnathon-build-chatbot-without-coding-live-berlin">Berlin, DE</a> (<i>2023-12-14</i>)</li>
+          <li><a target="_blank" href="https://www.knime.com/events/ai-learnathon-build-chatbot-without-coding-live-nottingham">Nottingham, UK</a> (<i>2023-11-30</i>)</li>
+          <li><a target="_blank" href="https://www.knime.com/events/ai-learnathon-build-chatbot-without-coding-live-hamburg">Hamburg, DE</a> (<i>2023-11-23</i>)</li>
+          </ul>
+
+          <p><b>Python Integration</b> // <u>Topics:</u> develop low-code/no-code tools in Python</p>
+
+          <ul>
+            <li>Pydata, (Berlin - EN) (<i>2022-11-16</i>) [<a target="_blank" href="https://www.meetup.com/pydata-berlin/events/289630176/">Meetup</a>]</li>
+            <li>Data Science Dojo, (Online - EN) (<i>2022-10-19</i>) [<a target="_blank" href="https://www.meetup.com/data-science-dojo-karachi/events/288738730/">Meetup</a>]</li>
+            <li>PyData, (London - EN) (<i>2022-10-03</i>) [<a target="_blank" href="https://www.meetup.com/pydata-london-meetup/events/288545477/">Meetup</a>]</li>
+        </ul>
+
+          <p><b>Data Science Learnathon</b> // <u>Topics:</u> data prep, modelling, deployment</p>
+
+          <ul>
+            <li><a target="_blank" href="https://www.meetup.com/it-IT/berlin-knime-users/events/298882557/">Berlin / DACH, (EN)</a> (<i>2024-03-21</i>)</li>
+            <li><a target="_blank" href="https://www.knime.com/events/learnathon-2106">Western Market, (EN)</a> (<i>2021-06-01</i>) [<a target="_blank" href="https://gather.town/app/6rk4N8SnDy037qct/Lernathon">Gather</a>]</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/virtual-data-science-learnathon-oct-7-2020">African Market, (EN)</a> (<i>2020-10-07</i>) [<a target="_blank" href="https://youtu.be/9gYCzsTMN5o">video</a>]</li>
+            <li><a target="_blank" href="https://odsc.com/speakers/virtual-data-science-learnathon-2/">ODSC Europe '20, (EN)</a> (<i>2020-09-17</i>)</li>
+          <li><a target="_blank" href="https://www.knime.com/about/events/virtual-data-science-learnathon-online-june-10-2020">Asian Market, (EN)</a> (<i>2020-06-16</i>) [videos (<a target="_blank" href="https://youtu.be/IQ0ylJVAjeU">1</a>,<a target="_blank" href="https://youtu.be/gXCFHmDseTo">2</a>)]</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/virtual-data-science-learnathon-italian-online-may-28-2020">Italian Market, (IT)</a> (<i>2020-05-28</i>) [<a target="_blank" href="https://www.youtube.com/watch?v=691CoFvhl0E">video</a>]</li>
+          </ul>
+
+          <p><b>KNIME Pros Learnathon</b> // <u>Topics:</u> sharing, open source, community</p>
+
+          <ul>
+            <li><a target="_blank" href="https://www.knime.com/knime-fall-summit-community-day-2020">KNIME Fall Summit 2020, (Online - EN)</a> (<i>2020-11-20</i>) [<a target="_blank" href="https://www.youtube.com/playlist?list=PLz3mQ6OlTI0aHVzH1lAgdUW-ZymlEb_eN">YouTube</a>]</li>
+        </ul>
+
+        <p><b>Guided Analytics Learnathon</b> // <u>Topics:</u> autoML, data visualization, visual analytics.</p>
+    
+
+          <ul>
+          <li><a target="_blank" href="https://www.meetup.com/meetup-group-UJyLXFJY/events/267317778/">Dublin, IE</a> (<i>2020-01-30</i>)</li>
+          <li><a target="_blank" href="https://www.knime.com/about/events/guided-analytics-learnathon-building-apps-for-automated-machine-learning-berlin-sept-2019">Berlin, DE</a> (<i>2019-09-25</i>)</li>
+          <li><a target="_blank" href="https://confengine.com/odsc-india-2019/proposal/10390/guided-analytics-building-applications-for-automated-machine-learning">Bangalore, IN</a> (<i>2019-08-08</i>)</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/guided-analytics-learnathon-building-applications-for-automated-machine-learning-rome">Rome, IT</a> (<i>2019-05-28</i>)</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/guided-analytics-learnathon-building-applications-for-automated-machine-learning-zurich-may-2019">Zurich, CH</a> (<i>2019-05-23</i>)</li>
+            <li><a target="_blank" href="https://odsc.com/speakers/guided-analytics-learnathon-building-applications-for-automated-machine-learning/">Boston, US</a> (<i>2019-05-02</i>)</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/knime-guided-analytics-learnathon-building-applications-for-automated-machine-learning-nantes-apr-2019">Nantes, FR</a> (<i>2019-04-03</i>)</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/knime-spring-summit-2019-berlin#workshops">Berlin, DE</a> (<i>2019-03-21</i>)</li>
+            <li><a target="_blank" href="https://www.knime.com/about/events/knime-guided-analytics-learnathon-building-applications-for-automated-machine-learning-montrouge-feb-2019">Paris, FR</a> (<i>2019-02-21</i>)</li>
+          </ul>
+
+
+      </div>
+        </fieldset>
+        </div>
+
+
+    
     </div>
-    <hr>
-    <h2>Publications</h2>
-    <a target="_blank" href="Rivelo-Tamagnini-paper.pdf"><i>Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations</i></a><br>
-    Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini<br>
-    In Workshop on <i>Human-In-the-Loop Data Analytics (HILDA), 2017</i>
+      </fieldset>
+      </div>
+      <hr>
+      <h2>Coding Projects</h2>
+      <div>
+        <fieldset class="majorpoints">
+          <legend class="majorpointslegend"> &#9658; ... </legend>
+          <div class="hiders" style="display:none;"> 
+          <ul>
+            <li><a target="_blank" href="https://github.com/paolotamag/streamlit_apps">streamlit_apps</a> - experimenting data apps for marketing analytics research.</li>
+            <li><a target="_blank" href="http://nyuvis-web.poly.edu/projects/rivelo/">Rivelo</a> - visual analytics tool for machine learning explanations.</li>
+            <li><a target="_blank" href="https://github.com/nyuvis/partial_dependence">partial_dependence</a> - python package for machine learning visualization.</li>
+          </ul>
+          </div>
+        </fieldset>
+      </div>
+      <hr>
+      <h2>Publications</h2>
+      <a target="_blank" href="Rivelo-Tamagnini-paper.pdf"><i>Interpreting Black-Box Classifiers Using Instance-Level Visual Explanations</i></a><br>
+      Paolo Tamagnini, Josua Krause, Aritra Dasgupta and Enrico Bertini<br>
+      In Workshop on <i>Human-In-the-Loop Data Analytics (HILDA), 2017</i>
+    </div>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="js\my.js"></script>
+    <script src="js\my.js"></script>
 
-  <script>
-    
-    // Function to shuffle an array using the Fisher-Yates shuffle algorithm
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        // Generate a random index from 0 to i
-        const j = Math.floor(Math.random() * (i + 1));
-        // Swap elements at indices i and j
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-    }    
+    <script>
+      
+      // Function to shuffle an array using the Fisher-Yates shuffle algorithm
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          // Generate a random index from 0 to i
+          const j = Math.floor(Math.random() * (i + 1));
+          // Swap elements at indices i and j
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }    
 
-    // Now 'reviews' is shuffled and you can proceed with displaying them as before
+      // Now 'reviews' is shuffled and you can proceed with displaying them as before
 
-    // Assuming the JSON file is located at 'path/to/your/data.json'
-    const jsonFilePath = 'collected_data.json';
+      // Assuming the JSON file is located at 'path/to/your/data.json'
+      const jsonFilePath = 'collected_data.json';
 
-    let reviews = null; // Initialize a variable to hold the JSON data
+      let reviews = null; // Initialize a variable to hold the JSON data
 
-    fetch(jsonFilePath)
-      .then(response => response.json()) // Parse the response as JSON
-      .then(data => {
-        reviews = data.review;
-        shuffleArray(reviews); // Assign the JSON data to the variable
-        console.log(reviews); // Optional: log the data to verify
-      })
-      .catch(error => {
-        console.error('Error fetching the JSON file:', error);
-      });
+      fetch(jsonFilePath)
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+          reviews = data.review;
+          shuffleArray(reviews); // Assign the JSON data to the variable
+          console.log(reviews); // Optional: log the data to verify
+        })
+        .catch(error => {
+          console.error('Error fetching the JSON file:', error);
+        });
 
-    let currentReviewIndex = 0;
-    const reviewContent = document.querySelector('.review-content');
-    const authorImg = reviewContent.querySelector('img');
-    const authorName = reviewContent.querySelector('.review-author-name');
-    const authorRole = reviewContent.querySelector('.review-author-role');
-    const reviewText = reviewContent.querySelector('.review-text');
-    const authorLink = reviewContent.querySelector('.review-author-link');
+      let currentReviewIndex = 0;
+      const reviewContent = document.querySelector('.review-content');
+      const authorImg = reviewContent.querySelector('img');
+      const authorName = reviewContent.querySelector('.review-author-name');
+      const authorRole = reviewContent.querySelector('.review-author-role');
+      const reviewText = reviewContent.querySelector('.review-text');
+      const authorLink = reviewContent.querySelector('.review-author-link');
 
 
-    function updateReview() {
-    if (!reviews || reviews.length === 0) return; // Guard clause if reviews is empty or not loaded
-    const review = reviews[currentReviewIndex];
-    reviewContent.style.opacity = 0;
-    
-    setTimeout(() => {
-        authorImg.src = review.profile_image_link;
-        authorImg.alt = `${review.author}'s profile picture`;
-        authorLink.href = review.author_link;
-        authorName.textContent = review.author;
-        authorRole.textContent = review.role;
-        reviewText.textContent = review.content;
-        reviewContent.style.opacity = 1;
-    }, 500);
+      function updateReview() {
+      if (!reviews || reviews.length === 0) return; // Guard clause if reviews is empty or not loaded
+      const review = reviews[currentReviewIndex];
+      reviewContent.style.opacity = 0;
+      
+      setTimeout(() => {
+          authorImg.src = review.profile_image_link;
+          authorImg.alt = `${review.author}'s profile picture`;
+          authorLink.href = review.author_link;
+          authorName.textContent = review.author;
+          authorRole.textContent = review.role;
+          reviewText.textContent = review.content;
+          reviewContent.style.opacity = 1;
+      }, 500);
 
-    currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
-}
-
-    updateReview(); // Initial update
-    setInterval(updateReview, 10000); // Update every 5 seconds
-
-    function enforceDesktopViewport() {
-    const viewport = document.querySelector("meta[name=viewport]");
-    if (viewport) {
-      // Set the viewport width to 1024px for desktop display
-      viewport.setAttribute("content", "width=1920");
-    } else {
-      // If the viewport meta tag does not exist, create one and append it to <head>
-      const newViewport = document.createElement("meta");
-      newViewport.setAttribute("name", "viewport");
-      newViewport.setAttribute("content", "width=1920");
-      document.head.appendChild(newViewport);
-    }
+      currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
   }
 
-  // Call the function to enforce desktop viewport
-  enforceDesktopViewport();
-</script>
+      updateReview(); // Initial update
+      setInterval(updateReview, 10000); // Update every 5 seconds
+
+      function enforceDesktopViewport() {
+      const viewport = document.querySelector("meta[name=viewport]");
+      if (viewport) {
+        // Set the viewport width to 1024px for desktop display
+        viewport.setAttribute("content", "width=1920");
+      } else {
+        // If the viewport meta tag does not exist, create one and append it to <head>
+        const newViewport = document.createElement("meta");
+        newViewport.setAttribute("name", "viewport");
+        newViewport.setAttribute("content", "width=1920");
+        document.head.appendChild(newViewport);
+      }
+    }
+
+    // Call the function to enforce desktop viewport
+    enforceDesktopViewport();
+  </script>
 </body>
 </html>
