@@ -82,14 +82,28 @@ div.body_text_3 {
 }
 
 div.background_div {
-	position:absolute; 
-	z-index:0;
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+	height: 1000px;
 	zoom: 125%;
-	top: -5%;
-	left: -5%;
-	width: 100%;
-	height: 100%;
-
+	top: 5%;
+	left: 5%;
+}
+.background_div img {
+    width: 1000px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure this is set so images are above the div's background but below anything else you might want to overlay */
+}
+#bckgrndimg1 {
+    z-index: 2; /* This ensures #slider is above #slider_two */
+}
+#bckgrndimg2 {
+    z-index: 1;
 }
 
 body {
@@ -107,7 +121,7 @@ canvas {
 }
 
 .container {
-	width: 90%;
+	width: 100%;
 	height: 1250px;
 	position: absolute;
 	z-index:10;
