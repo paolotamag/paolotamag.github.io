@@ -76,7 +76,7 @@ div.body_text_3 {
     }
 
 	#reviewSlideshow {
-		height: 250px;
+		height: 300px;
 	}
 }
 
@@ -144,6 +144,7 @@ hr {
 	background-color: rgba(255, 255, 255, 0.5);
 	border-radius: 8px;
 	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	margin-bottom: 20px;
 }
 .review-content {
 	transition: opacity 0.5s ease-in-out;
