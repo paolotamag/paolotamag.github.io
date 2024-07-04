@@ -99,12 +99,7 @@ div.background_div {
     left: 0;
     z-index: 1; /* Ensure this is set so images are above the div's background but below anything else you might want to overlay */
 }
-#slider {
-    z-index: 2; /* This ensures #slider is above #slider_two */
-}
-#slider2 {
-    z-index: 1;
-}
+
 
 body {
 	font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
