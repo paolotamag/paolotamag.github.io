@@ -127,6 +127,13 @@ canvas {
 	z-index:10;
 }
 
+.text-container {
+	width: 90%;
+	height: 1250px;
+	position: absolute;
+	z-index:10;
+}
+
 a {
 	color: #267CB9;
 	text-decoration: none;
