@@ -99,10 +99,10 @@ div.background_div {
     left: 0;
     z-index: 1; /* Ensure this is set so images are above the div's background but below anything else you might want to overlay */
 }
-#bckgrndimg1 {
+#slider {
     z-index: 2; /* This ensures #slider is above #slider_two */
 }
-#bckgrndimg2 {
+#slider2 {
     z-index: 1;
 }
 
